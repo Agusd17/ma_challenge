@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
+  imgUrl: string = 'assets/imgs/register.png';
+  title: string = 'Registro de póliza';
+  description: string = 'Formulario de alta de nueva póliza';
+
   constructor() { }
 
   ngOnInit(): void {

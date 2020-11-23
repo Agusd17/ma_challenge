@@ -1,1 +1,140 @@
-<p>userdata-form works!</p>
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <br>
+    <h3>Datos personales:</h3>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-0 col-md-2"></div>
+  <div class="col-sm-12 col-md-8">
+    <form [formGroup]="userdataForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="dni" class="form-label">Nº de documento</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <input type="number"
+        class="form-control"
+        formControlName="dni"
+        id="dni">
+
+        <label for="firstname" class="form-label">Nombre</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <input type="text"
+        class="form-control"
+        formControlName="firstname"
+        id="firstname">
+
+        <label for="lastname" class="form-label">Apellido</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <input type="text"
+        class="form-control"
+        formControlName="lastname"
+        id="lastname">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <input type="email"
+        class="form-control"
+        formControlName="email"
+        id="email">
+
+        <label for="mobilenum" class="form-label">Nº de celular</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <div class="control-subgroup">
+
+          <div class="control-20">
+            <input type="number"
+            placeholder="0000"
+            class="form-control"
+            formControlName="mobilecode"
+            id="mobilecode">
+          </div>
+
+          <div class="control-5">
+            <span>-</span>
+          </div>
+
+          <div class="control-75">
+            <input type="number"
+            placeholder="654321"
+            class="form-control"
+            formControlName="mobilenum"
+            id="mobilenum">
+          </div>
+        </div>
+
+        <label for="phonenum" class="form-label">Nº de teléfono fijo</label>
+        <div class="control-subgroup">
+
+          <div class="control-20">
+            <input type="number"
+            placeholder="0000"
+            class="form-control"
+            formControlName="phonecode"
+            id="phonecode">
+          </div>
+
+          <div class="control-5">
+            <span>-</span>
+          </div>
+
+          <div class="control-75">
+            <input type="number"
+            placeholder="654321"
+            class="form-control"
+            formControlName="phonenum"
+            id="phonenum">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [formGroupName]="'location'">
+        <div class="control-subgroup">
+          <div class="control-30">
+            <label for="province" class="form-label">Provincia</label><span class="form-label-detail">&nbsp;(requerido)</span>
+            <select
+            class="form-control"
+            formControlName="province"
+            id="province"
+            (change)="loadCities($event.target.value)">
+              <option *ngFor="let item of provinces" [value]="item.id">{{ item.nombre }}</option>
+            </select>
+          </div>
+
+          <div class="control-5">
+            <span>-</span>
+          </div>
+
+          <div class="control-30">
+            <label for="city" class="form-label">Localidad</label><span class="form-label-detail">&nbsp;(requerido)</span>
+            <select
+            class="form-control"
+            formControlName="city"
+            id="city"
+            >
+              <option *ngIf="citiesLoading" value="" disabled selected><div class="loader">Cargando...</div></option>
+              <option *ngFor="let item of cities" [value]="item.nombre">{{ item.nombre }}</option>
+            </select>
+          </div>
+
+          <div class="control-5">
+            <span>-</span>
+          </div>
+
+          <div class="control-30">
+            <label for="adress" class="form-label">Dirección</label><span class="form-label-detail">&nbsp;(requerido)</span>
+            <input
+            type="text"
+            class="form-control"
+            formControlName="adress"
+            id="adress">
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <hr>
+        <button type="button" class="btn btn-success" (click)="loadProvinces()">testear servicio ></button>
+        <button type="submit" [routerLink]="'../vehicle-data'" class="btn btn-success">Continuar ></button>
+      </div>
+    </form>
+  </div>
+</div>

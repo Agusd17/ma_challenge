@@ -7,12 +7,21 @@ import { RegisterComponent } from './register/register.component';
 import { UserdataFormComponent } from './userdata-form/userdata-form.component';
 import { VehicledataFormComponent } from './vehicledata-form/vehicledata-form.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { SingleProductComponent } from './product-list/single-product/single-product.component';
+import { SingleProductComponent } from './product-data/single-product/single-product.component';
 import { SummaryComponent } from './summary/summary.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SectionHeroImageComponent } from './section-hero-image/section-hero-image.component';
 import { RegisterWelcomeComponent } from './register-welcome/register-welcome.component';
+import { AboutComponent } from './about/about.component';
+import { ProductDataComponent } from './product-data/product-data.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LocationService } from './services/location.service';
+import { ProductsService } from './services/products.service';
+import { UsercheckService } from './services/usercheck.service';
+import { UserdataService } from './services/userdata.service';
+import { VehicledataService } from './services/vehicledata.service';
 
 @NgModule({
   declarations: [
@@ -26,11 +35,15 @@ import { RegisterWelcomeComponent } from './register-welcome/register-welcome.co
     HeaderComponent,
     FooterComponent,
     SectionHeroImageComponent,
-    RegisterWelcomeComponent
+    RegisterWelcomeComponent,
+    AboutComponent,
+    ProductDataComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

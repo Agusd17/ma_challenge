@@ -1,1 +1,16 @@
-<p>summary works!</p>
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <br>
+    <h3>Resumen:</h3>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <hr>
+    <form [formGroup]="summaryForm" (ngSubmit)="onSubmit()">
+      <button type="submit" [routerLink]="'../summary'" class="btn btn-success">Enviar datos ></button>
+    </form>
+  </div>
+</div>

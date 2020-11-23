@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-summary',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryComponent implements OnInit {
 
+  summaryForm: FormGroup;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    console.log('success!');
+  }
 }
