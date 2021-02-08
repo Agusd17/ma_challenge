@@ -6,7 +6,12 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
     <form [formGroup]="productdataForm" (ngSubmit)="onSubmit()">
-      <button type="submit" [routerLink]="'../summary'" class="btn btn-success">Continuar ></button>
+
+      <app-single-product *ngFor="let item of products" [productData]="item"></app-single-product>
+
+      <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-success">< Datos del vehículo</button>
+      <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
+      <button type="button" (click)="onSubmit()" [routerLink]="'../summary'" class="btn btn-primary">Continuar ></button>
     </form>
   </div>
 </div>

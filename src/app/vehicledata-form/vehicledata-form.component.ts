@@ -18,6 +18,7 @@ export class VehicledataFormComponent implements OnInit {
   models: any[];
   selectedModel: string = null;
   versions: any[];
+  selectedVersion: string = null;
   brandsLoading: boolean = false;
   modelsLoading: boolean = false;
   versionsLoading: boolean = false;
@@ -37,24 +38,30 @@ export class VehicledataFormComponent implements OnInit {
 
   formInit() {
 
-    let brand: string = null;
-    let year: number = null;
-    let model: string = null;
-    let version: string = null;
-    this.vehicledataForm = new FormGroup({
-      'brand': new FormControl(brand, [
-        Validators.required
-      ]),
-      'year': new FormControl(year, [
-        Validators.required
-      ] ),
-      'model': new FormControl(model, [
-        Validators.required
-      ] ),
-      'version': new FormControl(version, [
-        Validators.required
-      ] )
-    });
+    if (this.vehicledataService.isDataStored()) {
+      this.vehicledataForm = this.vehicledataService.getForm();
+    } else {
+
+
+      let brand: string = null;
+      let year: number = null;
+      let model: string = null;
+      let version: string = null;
+      this.vehicledataForm = new FormGroup({
+        'brand': new FormControl(brand, [
+          Validators.required
+        ]),
+        'year': new FormControl(year, [
+          Validators.required
+        ] ),
+        'model': new FormControl(model, [
+          Validators.required
+        ] ),
+        'version': new FormControl(version, [
+          Validators.required
+        ] )
+      });
+    }
   }
 
   loadBrands() {
@@ -85,10 +92,19 @@ export class VehicledataFormComponent implements OnInit {
   }
 
   loadVersions() {
+    if (this.selectedBrand != null && this.selectedYear != null && this.selectedModel != null) {
+      this.versionsLoading = true;
+      console.log('im going to find some versions for brand '+ this.selectedBrand + ', year ' + this.selectedYear + ' and model ' + this.selectedModel);
 
+      this.vehicledataService.getVersions(this.selectedBrand, this.selectedYear, this.selectedModel).subscribe(response => {
+        this.versions = response;
+        this.versionsLoading = false;
+      })
+     }
   }
 
   onSubmit() {
+    this.vehicledataService.saveForm(this.vehicledataForm);
     this.router.navigate(['../product-data'], {relativeTo: this.route})
   }
 

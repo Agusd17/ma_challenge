@@ -1,1 +1,18 @@
-<p>single-product works!</p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        {{ productData.titulo }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ productData.puntaje }} puntos</h5>
+        <p class="card-text">{{ productData.descripcion }}</p>
+        <p *ngIf="productData.granizo == true">Posee cobertura contra granizo</p>
+        <p>Costo final por mes: ${{ productData.costo }}</p>
+        <a href="#" class="btn btn-primary">Elegir cobertura ></a>
+        <input type="hidden" name="codigoProducto" [value]="productData.codigoProducto">
+
+      </div>
+    </div>
+  </div>
+</div>
