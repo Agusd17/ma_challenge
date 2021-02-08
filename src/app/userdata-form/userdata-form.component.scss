@@ -1,4 +1,5 @@
 .form-label {
+  margin-top: 15px;
   font-size:14px;
   color:rgb(54, 54, 54);
   font-weight: 700;
@@ -13,6 +14,11 @@
   width:5%;
   display: inline-block;
   text-align:center;
+}
+
+.control-10 {
+  width:10%;
+  display: inline-block;
 }
 
 .control-20 {
@@ -37,4 +43,10 @@
 
 .loader {
   color: grey;
+}
+
+.input-info {
+  font-size:11px;
+  line-height: 1;
+  color:grey;
 }

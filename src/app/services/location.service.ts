@@ -22,7 +22,6 @@ export class LocationService {
         return responseData.provincias;
       }),
       catchError(errorRes => {
-        // Do something with the error
         // throwError devuelve un observable
         return throwError(errorRes);
       }))
@@ -30,15 +29,12 @@ export class LocationService {
 
   getCities(id: number) {
 
-    return this.http.get(
-      this.apiUrl+'/municipios?provincia='+id+'&campos=id,nombre&max=135'
-    )
+    return this.http.get(`${this.apiUrl}/municipios?provincia=${id}&campos=id,nombre&max=135`)
     .pipe(
       map((responseData:any) => {
         return responseData.municipios;
       }),
       catchError(errorRes => {
-        // Do something with the error
         // throwError devuelve un observable
         return throwError(errorRes);
       }))
@@ -47,21 +43,32 @@ export class LocationService {
 
   // async validators
   provinceValidator(control: FormControl): Promise<any> | Observable<any> {
-    let promise = new Promise<any>((resolve, reject) => {
-      if (false) {
-        resolve({'provinceInexistent': true})
-      } else {
-        // resolve null if validated
-        resolve(null);
+    let isProvinceValid;
+    return new Promise<any>(
+      (resolve, reject) => {
+        this.http.get(`${this.apiUrl}/provincias?id=${control.value}`).subscribe(
+          (response: any) => {
+            isProvinceValid = response.total;
+            (isProvinceValid === 0 || response.errores) ? resolve({'provinceNotFound': true}) : resolve(null);
+          }, reject => {
+            resolve({ 'provinceBadRequest': true });
+          });
       }
-    });
-    return promise;
+    );
   }
 
   cityValidator(control: FormControl): Promise<any> | Observable<any> {
-    let promise = new Promise<any>((resolve, reject) => {
-
-    });
-    return promise;
+    let isCityValid;
+    return new Promise<any>(
+      (resolve, reject) => {
+        this.http.get(`${this.apiUrl}/municipios?id=${control.value}`).subscribe(
+          (response: any) => {
+            isCityValid = response.total;
+            (isCityValid === 0 || response.errores) ? resolve({'cityNotFound': true}) : resolve(null);
+          }, reject => {
+            resolve({ 'cityBadRequest': true });
+          });
+      }
+    );
   }
 }

@@ -6,7 +6,58 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
     <form [formGroup]="vehicledataForm" (ngSubmit)="onSubmit()">
-      <button type="submit" [routerLink]="'../product-data'" class="btn btn-success">Continuar ></button>
+      <div class="control-30">
+        <label for="brand" class="form-label">Marca del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <select
+        class="form-control"
+        formControlName="brand"
+        id="brand"
+        (change)="selectedBrand = $event.target.value; loadModels();">
+          <option value="null" selected disabled>Marca del vehículo...</option>
+          <option *ngFor="let item of brands" [value]="item.codigo" [disabled]="item.codigo === 0 ? true : null">{{ item.desc }}</option>
+        </select>
+      </div>
+
+      <div class="control-5">
+        <span>-</span>
+      </div>
+
+      <div class="control-30">
+        <label for="year" class="form-label">Año</label>
+        <select
+        class="form-control"
+        formControlName="year"
+        id="year"
+        (change)="selectedYear = $event.target.value; loadModels();">
+        <option value="null" selected disabled>Año de fabricación...</option>
+          <option *ngFor="let item of years | sortBy:'desc'" [value]="item">{{ item }}</option>
+        </select>
+      </div>
+
+      <div class="control-5">
+        <span>-</span>
+      </div>
+
+      <div class="control-30">
+        <label for="model" class="form-label">Modelo del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
+        <select
+        class="form-control"
+        formControlName="model"
+        id="model"
+        (change)="selectedModel = $event.target.value">
+          <option *ngIf="models == null" value="null" selected disabled>Seleccione marca y año</option>
+          <option *ngIf="models != null && models.length == 0" value="null" selected disabled>No existen modelos</option>
+          <option *ngIf="models != null && models.length != 0" value="null" selected disabled>Seleccione un modelo...</option>
+          <option *ngFor="let item of models | sortBy:'asc':'nombre'" [value]="item">{{ item }}</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <hr>
+        <button type="button" [routerLink]="'../user-data'" class="btn btn-success">< Atrás</button>
+        <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
+        <button type="button" [routerLink]="'../product-data'" class="btn btn-success">Continuar ></button>
+      </div>
     </form>
   </div>
 </div>

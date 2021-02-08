@@ -22,6 +22,8 @@ import { ProductsService } from './services/products.service';
 import { UsercheckService } from './services/usercheck.service';
 import { UserdataService } from './services/userdata.service';
 import { VehicledataService } from './services/vehicledata.service';
+import { CustomValidatorsService } from './services/custom-validators.service';
+import { SortByPipe } from './shared/pipes/sort-by.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { VehicledataService } from './services/vehicledata.service';
     SectionHeroImageComponent,
     RegisterWelcomeComponent,
     AboutComponent,
-    ProductDataComponent
+    ProductDataComponent,
+    SortByPipe
   ],
   imports: [
     BrowserModule,
