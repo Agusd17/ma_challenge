@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -11,20 +11,9 @@ export class ProductsService {
 
   dataForm: FormGroup = null;
   private apiUrl: string = 'https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1';
+  selectedProductChanged = new Subject<any>();
 
   constructor(private http: HttpClient) { }
-
-  isDataSaved(): boolean {
-    return (this.dataForm != null);
-  }
-
-  saveForm(inputData: FormGroup) {
-    this.dataForm = inputData;
-  }
-
-  getForm(): FormGroup {
-    return this.dataForm;
-  }
 
   getProducts() {
     return this.http.get(`${this.apiUrl}/coberturas`)
@@ -35,5 +24,10 @@ export class ProductsService {
       catchError(errorRes => {
         return throwError(errorRes);
       }))
+  }
+
+  setSelectedProduct(product: any) {
+    this.selectedProductChanged.next(product);
+    console.log('Producto elegido: '+ product.titulo);
   }
 }

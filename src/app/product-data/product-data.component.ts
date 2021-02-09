@@ -10,15 +10,14 @@ import { ProductsService } from '../services/products.service';
 export class ProductDataComponent implements OnInit {
 
 
-  productdataForm: FormGroup;
   productsLoading: boolean = false;
   products: any;
+  selectedProduct: any;
 
   constructor( private productdataService: ProductsService) { }
 
   ngOnInit(): void {
     this.loadProducts();
-    this.formInit();
   }
 
   loadProducts() {
@@ -29,20 +28,14 @@ export class ProductDataComponent implements OnInit {
     })
   }
 
-  formInit() {
-    if (this.productdataService.isDataSaved()) {
-      this.productdataForm = this.productdataService.getForm();
-    } else {
-
-    }
-  }
-
-  onSubmit() {
+  setSelectedProduct(product) {
+    this.selectedProduct = product;
+    console.log(this.selectedProduct.titulo);
 
   }
 
   testing() {
-    console.log(this.productdataForm);
+    console.log();
   }
 
 }
