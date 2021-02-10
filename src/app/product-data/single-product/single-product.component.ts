@@ -12,15 +12,25 @@ export class SingleProductComponent implements OnInit, OnDestroy {
   @Input() productData: any;
   selected: any;
   subscription: Subscription;
+  stars: number[] = [];
 
   constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
+
+    this.selected = this.productService.getSelected().codigoProducto;
+
+
+    for (let i = 0; i < this.productData.puntaje; i++) {
+      this.stars.push(i);
+    }
+
     this.subscription = this.productService.selectedProductChanged.subscribe(
       product => {
         this.selected = product.codigoProducto;
+
       }
-    )
+      )
   }
 
   selectProduct(product: any) {

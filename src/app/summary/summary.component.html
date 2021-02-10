@@ -3,14 +3,16 @@
     <br>
     <h3>Resumen:</h3>
     <hr>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <h5>Datos personales</h5>
+
     <hr>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <h5>Datos del vehículo</h5>
+
     <hr>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
+    <h5>Póliza elegida</h5>
+
     <hr>
-    <form [formGroup]="summaryForm" (ngSubmit)="onSubmit()">
-      <button type="submit" [routerLink]="'../summary'" class="btn btn-success">Enviar datos ></button>
-    </form>
+    <button type="button" [routerLink]="'../product-data'" class="btn btn-success">< Elegir póliza</button>
+    <button type="button" (click)="submitAll()" class="btn btn-primary">Enviar datos ></button>
   </div>
 </div>

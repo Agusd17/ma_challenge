@@ -5,10 +5,11 @@
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
+    <div class="row">
       <app-single-product *ngFor="let item of products | sortBy:'desc':'puntaje' " [productData]="item"></app-single-product>
+    </div>
 
-      <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-success">< Datos del vehículo</button>
-      <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
-      <button type="button" [routerLink]="'../summary'" class="btn btn-primary">Continuar ></button>
+    <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-success">< Datos del vehículo</button>
+    <button type="button" [routerLink]="'../summary'" class="btn btn-primary">Continuar ></button>
   </div>
 </div>

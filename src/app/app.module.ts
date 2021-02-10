@@ -19,11 +19,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LocationService } from './services/location.service';
 import { ProductsService } from './services/products.service';
-import { UsercheckService } from './services/usercheck.service';
 import { UserdataService } from './services/userdata.service';
 import { VehicledataService } from './services/vehicledata.service';
 import { CustomValidatorsService } from './services/custom-validators.service';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
+import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { SortByPipe } from './shared/pipes/sort-by.pipe';
     RegisterWelcomeComponent,
     AboutComponent,
     ProductDataComponent,
-    SortByPipe
+    SortByPipe,
+    CharReplacePipe
   ],
   imports: [
     BrowserModule,

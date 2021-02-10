@@ -1,5 +1,37 @@
+.card-header {
+  background: linear-gradient(90deg, rgba(20,95,231,1) 0%, rgba(0,212,255,1) 100%);
+  padding: 1.75rem 1.25rem .5rem;
+}
+.stars {
+  font-weight: 500;
+  color:white;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.card-title {
+  color:white;
+}
 .selected {
-  border: 2px solid #569fec;
-  box-shadow: 0px 0px 10px blue;
-  margin-bottom:5px;
+  box-shadow: 0px 0px 10px #2b92ce;
+  margin-bottom: 5px;
+  transition: background-color 1s;
+}
+.selected-header {
+}
+.prod-desc {
+  font-size: 15px;
+  font-weight: 300;
+}
+.extras {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgb(32, 32, 32);
+}
+.precio-text {
+  font-size: 13px;
+}
+.precio-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(20,95,231,1);
 }

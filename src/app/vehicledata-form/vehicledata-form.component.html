@@ -14,7 +14,7 @@
         id="brand"
         (change)="selectedBrand = $event.target.value; loadModels();">
           <option value="null" selected disabled>Marca del vehículo...</option>
-          <option *ngFor="let item of brands" [value]="item.codigo" [disabled]="item.codigo === 0 ? true : null">{{ item.desc }}</option>
+          <option *ngFor="let item of brands" [value]="item.codigo" [disabled]="item.codigo === 0 ? true : null"><input type="hidden" [value]="item.desc">{{ item.desc }}</option>
         </select>
       </div>
 

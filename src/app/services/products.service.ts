@@ -11,6 +11,7 @@ export class ProductsService {
 
   dataForm: FormGroup = null;
   private apiUrl: string = 'https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1';
+  selectedProduct: any = null;
   selectedProductChanged = new Subject<any>();
 
   constructor(private http: HttpClient) { }
@@ -27,7 +28,11 @@ export class ProductsService {
   }
 
   setSelectedProduct(product: any) {
+    this.selectedProduct = product;
     this.selectedProductChanged.next(product);
-    console.log('Producto elegido: '+ product.titulo);
+  }
+
+  getSelected() {
+    return (this.selectedProduct != null) ? this.selectedProduct : 0 ;
   }
 }

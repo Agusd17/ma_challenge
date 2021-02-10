@@ -1,21 +1,38 @@
-<div class="row">
+
   <div class="col-sm-12">
     <div class="card" [ngClass]="selected === productData.codigoProducto ? 'selected' : ''">
-      <div class="card-header">
-        {{ productData.titulo }}
+      <div class="card-header" [ngClass]="selected === productData.codigoProducto ? 'selected-header' : ''">
+        <div class="row">
+          <div class="col-sm-6 text-left"><h5 class="card-title">{{ productData.titulo }}</h5></div>
+          <div class="col-sm-6 text-right stars"><div *ngFor="let index of stars"><img src="assets/icons/star.png" alt="star"></div></div>
+        </div>
+
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{ productData.puntaje }} puntos</h5>
-        <p class="card-text">{{ productData.descripcion }}</p>
-        <p *ngIf="productData.granizo == true">Posee cobertura contra granizo</p>
-        <p>Costo final por mes: ${{ productData.costo }}</p>
-        <button (click)="selectProduct(productData)"
-
-         class="btn btn-primary"
-         [value]="productData.codigoProducto"
-         >Elegir cobertura ></button>
-
+        <div class="row">
+          <div class="col-sm-6 col-md-8 text-left">
+            <p class="card-text prod-desc">{{ productData.descripcion | charReplace:'±':'ñ'}}</p>
+          </div>
+          <div class="col-sm-6 col-md-4 text-right">
+            <p *ngIf="productData.granizo == true" class="extras">Posee cobertura contra granizo</p>
+            <p *ngIf="productData.franquicia != 0" class="extras">Con franquicia de ${{ productData.franquicia }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-8 text-left">
+            <p class="precio-text">Costo final por mes: <span class="precio-num">${{ productData.costo }}</span></p>
+          </div>
+          <div class="col-sm-4">
+            <button (click)="selectProduct(productData)"
+              class="btn btn-block btn-primary"
+              [disabled]="selected === productData.codigoProducto"
+              [value]="productData.codigoProducto"
+              >{{ selected === productData.codigoProducto ? 'Producto elegido' : 'Elegir producto >' }}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <br>

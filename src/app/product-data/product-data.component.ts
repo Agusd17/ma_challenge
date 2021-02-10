@@ -30,12 +30,7 @@ export class ProductDataComponent implements OnInit {
 
   setSelectedProduct(product) {
     this.selectedProduct = product;
-    console.log(this.selectedProduct.titulo);
 
-  }
-
-  testing() {
-    console.log();
   }
 
 }
