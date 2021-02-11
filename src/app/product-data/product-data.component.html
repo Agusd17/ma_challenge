@@ -10,6 +10,6 @@
     </div>
 
     <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-success">< Datos del vehículo</button>
-    <button type="button" [routerLink]="'../summary'" class="btn btn-primary">Continuar ></button>
+    <button type="button" (click)="submitData()" class="btn btn-primary" [disabled]="!isProductSelected">Continuar ></button>
   </div>
 </div>

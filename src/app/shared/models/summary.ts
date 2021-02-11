@@ -5,20 +5,23 @@ export class Summary {
   public documento: number = 0;
   public nacimiento: string = '';
   public email: string = '';
-  public numMobile: number = 0;
-  public numPhone: number = 0;
+
+  public numMobile: string = '';
+  public numPhone: string = '';
   public provincia: string = '';
   public ciudad: string = '';
   public direccion: string = '';
   public usuario: string = '';
+
   public marca: string = '';
-  public year: number = 0;
+  public year: string = '';
   public modelo: string = '';
   public version: string = '';
+
   public poliza: string = '';
   public granizo: boolean = false;
-  public franquicia: number = 0;
-  public costo: number = 0;
+  public franquicia: string = '';
+  public costo: string = '';
 
   constructor() { }
 }

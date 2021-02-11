@@ -4,6 +4,8 @@ import { ProductsService } from '../services/products.service';
 import { UserdataService } from '../services/userdata.service';
 import { VehicledataService } from '../services/vehicledata.service';
 import { Summary } from 'src/app/shared/models/summary';
+import { SummaryService } from '../services/summary.service';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-summary',
@@ -20,23 +22,13 @@ export class SummaryComponent implements OnInit {
   summary = new Summary;
 
   constructor(
-    private userdataService: UserdataService,
-    private vehicledataService: VehicledataService,
-    private productdataService: ProductsService
+    private locationService: LocationService,
+    private vehicleService: VehicledataService,
+    private summaryService: SummaryService
     ) { }
 
   ngOnInit(): void {
-    this.userdata = this.userdataService.getForm();
-    console.log('UserData:');
-    console.log(this.userdata?.value);
-
-    this.vehicledata = this.vehicledataService.getForm();
-    console.log('VehicleData:');
-    console.log(this.vehicledata?.value);
-    this.productdata = this.productdataService.getSelected();
-    console.log('ProductData:');
-    console.log(this.productdata);
-
+    this.summary = this.summaryService.getSummary();
   }
 
   submitAll() {

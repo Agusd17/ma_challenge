@@ -22,6 +22,7 @@ import { ProductsService } from './services/products.service';
 import { UserdataService } from './services/userdata.service';
 import { VehicledataService } from './services/vehicledata.service';
 import { CustomValidatorsService } from './services/custom-validators.service';
+import { SummaryService } from './services/summary.service';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
 import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
 

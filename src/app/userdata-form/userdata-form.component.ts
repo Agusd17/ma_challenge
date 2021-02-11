@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CustomValidatorsService } from '../services/custom-validators.service';
 import { LocationService } from '../services/location.service';
+import { SummaryService } from '../services/summary.service';
 import { UserdataService } from '../services/userdata.service';
 
 @Component({
@@ -11,11 +12,12 @@ import { UserdataService } from '../services/userdata.service';
   templateUrl: './userdata-form.component.html',
   styleUrls: ['./userdata-form.component.scss']
 })
-export class UserdataFormComponent implements OnInit {
+export class UserdataFormComponent implements OnInit, OnDestroy {
 
   userdataForm: FormGroup;
   provinces: any = null;
   provincesLoading = false;
+  provSubscription: Subscription;
   cities: any = null;
   citiesLoading = false;
 
@@ -23,6 +25,7 @@ export class UserdataFormComponent implements OnInit {
     private locationService: LocationService,
     private userdataService: UserdataService,
     private customValidators: CustomValidatorsService,
+    private summaryService: SummaryService,
     private router: Router,
     private route: ActivatedRoute
     ) { }
@@ -30,6 +33,7 @@ export class UserdataFormComponent implements OnInit {
   ngOnInit(): void {
     this.formInit();
     this.loadProvinces();
+    this.onProvinceChanges();
   }
 
   formInit() {
@@ -118,32 +122,32 @@ export class UserdataFormComponent implements OnInit {
           'province': new FormControl(null,
             Validators.required,
             this.locationService.provinceValidator.bind(this.locationService)),
-            'city': new FormControl(null,
-              Validators.required,
-              this.locationService.cityValidator.bind(this.locationService)),
-              'adress': new FormControl(null, [
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(24),
-                Validators.pattern(/^([a-zA-Z\s]+[0-9]+)$/)
-              ]),
-            }),
+          'city': new FormControl(null,
+            Validators.required,
+            this.locationService.cityValidator.bind(this.locationService)),
+          'adress': new FormControl(null, [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(24),
+            Validators.pattern(/^([a-zA-Z\s]+[0-9]+)$/)
+          ]),
+        }),
 
-            'user-data': new FormGroup({
-              // - Usuario (2)
-              // Requerido. minLength 3, maxLength 30 [Debe consultar disponibilidad]
-              'username': new FormControl(username, [
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(30),
-                Validators.pattern(/^[a-zA-Z.]+(\s*[a-zA-Z.]*)*[a-zA-Z.]+$/)
-              ], this.userdataService.checkUsername.bind(this.userdataService)),
+        'user-data': new FormGroup({
+          // - Usuario (2)
+          // Requerido. minLength 3, maxLength 30 [Debe consultar disponibilidad]
+          'username': new FormControl(username, [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(30),
+            Validators.pattern(/^[a-zA-Z.]+(\s*[a-zA-Z.]*)*[a-zA-Z.]+$/)
+          ], this.userdataService.checkUsername.bind(this.userdataService)),
 
-              'user-password': new FormGroup({
+          'user-password': new FormGroup({
 
-                // - Contraseña
-                // Requerido. Nivel de seguridad media/alta
-                'password': new FormControl(password, [
+            // - Contraseña
+            // Requerido. Nivel de seguridad media/alta
+            'password': new FormControl(password, [
             Validators.required,
             Validators.minLength(8),
             Validators.maxLength(16),
@@ -173,6 +177,7 @@ export class UserdataFormComponent implements OnInit {
 
   onSubmit() {
     this.userdataService.saveForm(this.userdataForm);
+    this.summaryService.saveUserdata();
     this.router.navigate(['../vehicle-data'], {relativeTo: this.route})
   }
 
@@ -184,15 +189,18 @@ export class UserdataFormComponent implements OnInit {
     });
   }
 
-  loadCities(id: number) {
-    this.citiesLoading = true;
-    setTimeout(() => {
+  onProvinceChanges() {
 
-      this.locationService.getCities(id).subscribe(response => {
-        this.cities = response;
-        this.citiesLoading = false;
-      });
-    }, 1500);
+    this.provSubscription = this.userdataForm.get('location').get('province').valueChanges.subscribe(selectedValue => {
+      this.citiesLoading = true;
+        this.locationService.getCities(+selectedValue.id).subscribe(response => {
+          this.cities = response;
+          this.citiesLoading = false;
+        });
+    });
   }
 
+  ngOnDestroy() {
+    this.provSubscription.unsubscribe();
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SummaryService } from '../services/summary.service';
 import { VehicledataService } from '../services/vehicledata.service';
 
 @Component({
@@ -26,6 +27,7 @@ export class VehicledataFormComponent implements OnInit {
 
   constructor(
     private vehicledataService: VehicledataService,
+    private summaryService: SummaryService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -105,6 +107,7 @@ export class VehicledataFormComponent implements OnInit {
 
   onSubmit() {
     this.vehicledataService.saveForm(this.vehicledataForm);
+    this.summaryService.saveVehicledata();
     this.router.navigate(['../product-data'], {relativeTo: this.route})
   }
 

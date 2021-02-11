@@ -1,17 +1,55 @@
 <div class="row">
   <div class="col-sm-12 text-center">
-    <br>
     <h3>Resumen:</h3>
     <hr>
-    <h5>Datos personales</h5>
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Datos personales</h5>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <p>Nombre:  {{ summary.nombre }} </p>
+        <p>Apellido: {{ summary.apellido }} </p>
+        <p>DNI: {{ summary.documento }} </p>
+        <p>Fecha de nacimiento: {{ summary.nacimiento }} </p>
+        <p>Email: {{ summary.email }} </p>
+        <hr>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <p>Teléfono móvil:  {{ summary.nombre }} </p>
+        <p>Teléfono fijo: {{ summary.apellido }} </p>
+        <p>Provincia: {{ summary.provincia }} </p>
+        <p>Localidad: {{ summary.ciudad }} </p>
+        <p>Dirección: {{ summary.direccion }} </p>
+        <hr>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <p>Nombre de usuario: {{ summary.usuario }} </p>
+    </div>
 
-    <hr>
-    <h5>Datos del vehículo</h5>
-
-    <hr>
-    <h5>Póliza elegida</h5>
-
-    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Datos del vehículo</h5>
+      </div>
+      <div class="col-sm-12">
+        <p>Marca: {{ summary.marca }} </p>
+        <p>Año de fabricación: {{ summary.year }} </p>
+        <p>Modelo: {{ summary.modelo }} </p>
+        <p>Versión: {{ summary.version }} </p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Póliza elegida</h5>
+      </div>
+      <div class="col-sm-12">
+        <p>Tipo: {{ summary.poliza }} </p>
+        <p>Cubre contra granizo: {{ summary.granizo }} </p>
+        <p>Posee franquicia: {{ summary.franquicia }} </p>
+        <p>Final por mes: {{ summary.costo }} </p>
+      </div>
+    </div>
     <button type="button" [routerLink]="'../product-data'" class="btn btn-success">< Elegir póliza</button>
     <button type="button" (click)="submitAll()" class="btn btn-primary">Enviar datos ></button>
   </div>

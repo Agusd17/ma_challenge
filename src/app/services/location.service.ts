@@ -15,7 +15,7 @@ export class LocationService {
 
   getProvinces() {
     return this.http.get(
-      this.apiUrl+'/provincias'
+      `${this.apiUrl}/provincias`
     )
     .pipe(
       map((responseData:any) => {
@@ -29,9 +29,16 @@ export class LocationService {
 
   getCities(id: number) {
 
-    return this.http.get(`${this.apiUrl}/municipios?provincia=${id}&campos=id,nombre&max=135`)
+    return this.http.get(
+      `${this.apiUrl}/municipios?provincia=${id}&campos=id,nombre&max=135`
+      )
     .pipe(
       map((responseData:any) => {
+        if (responseData.cantidad === 0) {
+          return [{'id': 0, 'nombre': 'Sin municipios'}];
+        }
+        console.log(responseData);
+
         return responseData.municipios;
       }),
       catchError(errorRes => {
@@ -46,7 +53,7 @@ export class LocationService {
     let isProvinceValid;
     return new Promise<any>(
       (resolve, reject) => {
-        this.http.get(`${this.apiUrl}/provincias?id=${control.value}`).subscribe(
+        this.http.get(`${this.apiUrl}/provincias?id=${control.value.id}`).subscribe(
           (response: any) => {
             isProvinceValid = response.total;
             (isProvinceValid === 0 || response.errores) ? resolve({'provinceNotFound': true}) : resolve(null);
@@ -61,7 +68,7 @@ export class LocationService {
     let isCityValid;
     return new Promise<any>(
       (resolve, reject) => {
-        this.http.get(`${this.apiUrl}/municipios?id=${control.value}`).subscribe(
+        this.http.get(`${this.apiUrl}/municipios?id=${control.value.id}`).subscribe(
           (response: any) => {
             isCityValid = response.total;
             (isCityValid === 0 || response.errores) ? resolve({'cityNotFound': true}) : resolve(null);

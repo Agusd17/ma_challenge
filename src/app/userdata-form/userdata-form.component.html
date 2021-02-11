@@ -142,8 +142,8 @@
             class="form-control"
             formControlName="province"
             id="province"
-            (change)="loadCities($event.target.value)">
-              <option *ngFor="let item of provinces | sortBy:'asc':'nombre'" [value]="item.id">{{ item.nombre }}</option>
+            >
+              <option *ngFor="let item of provinces | sortBy:'asc':'nombre'" [ngValue]="item">{{ item.nombre }}</option>
             </select>
           </div>
 
@@ -159,7 +159,7 @@
             id="city"
             >
               <option *ngIf="citiesLoading" value="" selected><div class="loader">Cargando...</div></option>
-              <option *ngFor="let item of cities | sortBy:'asc':'nombre' " [value]="item.id">{{ item.nombre }}</option>
+              <option *ngFor="let item of cities | sortBy:'asc':'nombre' " [ngValue]="item">{{ item.nombre }}</option>
             </select>
           </div>
 
