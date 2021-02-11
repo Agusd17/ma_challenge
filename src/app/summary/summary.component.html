@@ -17,8 +17,8 @@
       <div class="col-sm-12 col-lg-6">
         <p>Teléfono móvil:  {{ summary.nombre }} </p>
         <p>Teléfono fijo: {{ summary.apellido }} </p>
-        <p>Provincia: {{ summary.provincia }} </p>
-        <p>Localidad: {{ summary.ciudad }} </p>
+        <p>Provincia: {{ summary.provincia.nombre }} </p>
+        <p>Localidad: {{ summary.ciudad.nombre }} </p>
         <p>Dirección: {{ summary.direccion }} </p>
         <hr>
       </div>
@@ -32,10 +32,10 @@
         <h5>Datos del vehículo</h5>
       </div>
       <div class="col-sm-12">
-        <p>Marca: {{ summary.marca }} </p>
+        <p>Marca: {{ summary.marca.desc }} </p>
         <p>Año de fabricación: {{ summary.year }} </p>
         <p>Modelo: {{ summary.modelo }} </p>
-        <p>Versión: {{ summary.version }} </p>
+        <p>Versión: {{ summary.version.desc }} </p>
         <hr>
       </div>
     </div>

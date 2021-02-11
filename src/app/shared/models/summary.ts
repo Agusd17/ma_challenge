@@ -8,15 +8,15 @@ export class Summary {
 
   public numMobile: string = '';
   public numPhone: string = '';
-  public provincia: string = '';
-  public ciudad: string = '';
+  public provincia: any = '';
+  public ciudad: any = '';
   public direccion: string = '';
   public usuario: string = '';
 
-  public marca: string = '';
+  public marca: any = '';
   public year: string = '';
   public modelo: string = '';
-  public version: string = '';
+  public version: any = '';
 
   public poliza: string = '';
   public granizo: boolean = false;

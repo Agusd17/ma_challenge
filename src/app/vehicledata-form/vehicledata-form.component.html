@@ -11,10 +11,9 @@
         <select
         class="form-control"
         formControlName="brand"
-        id="brand"
-        (change)="selectedBrand = $event.target.value; loadModels();">
+        id="brand">
           <option value="null" selected disabled>Marca del vehículo...</option>
-          <option *ngFor="let item of brands" [value]="item.codigo" [disabled]="item.codigo === 0 ? true : null"><input type="hidden" [value]="item.desc">{{ item.desc }}</option>
+          <option *ngFor="let item of brands" [ngValue]="item" [disabled]="item.codigo === 0 ? true : null"><input type="hidden" [value]="item.desc">{{ item.desc }}</option>
         </select>
       </div>
 
@@ -27,8 +26,7 @@
         <select
         class="form-control"
         formControlName="year"
-        id="year"
-        (change)="selectedYear = $event.target.value; loadModels();">
+        id="year">
         <option value="null" selected disabled>Año de fabricación...</option>
           <option *ngFor="let item of years | sortBy:'desc'" [value]="item">{{ item }}</option>
         </select>
@@ -43,8 +41,7 @@
         <select
         class="form-control"
         formControlName="model"
-        id="model"
-        (change)="selectedModel = $event.target.value; loadVersions()">
+        id="model">
           <option *ngIf="models == null" value="null" selected disabled>Seleccione marca y año</option>
           <option *ngIf="models != null && models.length == 0" value="null" selected disabled>No existen modelos</option>
           <option *ngIf="models != null && models.length != 0" value="null" selected disabled>Seleccione un modelo...</option>
@@ -57,13 +54,12 @@
         <select
         class="form-control"
         formControlName="version"
-        id="version"
-        (change)="selectedVersion = $event.target.value">
+        id="version">
           <option *ngIf="versions == null" value="null" selected disabled>Seleccione versión</option>
           <option *ngIf="versionsLoading" value="" selected><div class="loader">Cargando...</div></option>
           <option *ngIf="versions != null && versions.length == 0" value="null" selected disabled>No existen versiones</option>
           <option *ngIf="versions != null && versions.length != 0" value="null" selected disabled>Seleccione una versión...</option>
-          <option *ngFor="let item of versions | sortBy:'asc':'nombre'" [value]="item.codigo">{{ item.desc }}</option>
+          <option *ngFor="let item of versions | sortBy:'asc':'nombre'" [ngValue]="item">{{ item.desc }}</option>
         </select>
       </div>
 

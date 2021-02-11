@@ -64,15 +64,11 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
           ]),
           'firstname': new FormControl(firstname, [
             Validators.required,
-            Validators.pattern(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/),
-            Validators.minLength(2),
-            Validators.maxLength(15)
+            Validators.pattern(/^[a-zA-ZÀ-ÿñÑ\s]{2,15}$/),
           ]),
           'lastname': new FormControl(lastname, [
             Validators.required,
-            Validators.pattern(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/),
-            Validators.minLength(2),
-            Validators.maxLength(15)
+            Validators.pattern(/^[a-zA-ZÀ-ÿñÑ\s]{2,15}$/),
           ]),
           // - Fecha de nacimiento
           // La persona deberá tener más de 18 años y menos de 99
@@ -127,9 +123,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
             this.locationService.cityValidator.bind(this.locationService)),
           'adress': new FormControl(null, [
             Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(24),
-            Validators.pattern(/^([a-zA-Z\s]+[0-9]+)$/)
+            Validators.pattern(/^[a-zA-Z\s0-9.]{3,24}$/)
           ]),
         }),
 
@@ -138,9 +132,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
           // Requerido. minLength 3, maxLength 30 [Debe consultar disponibilidad]
           'username': new FormControl(username, [
             Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(30),
-            Validators.pattern(/^[a-zA-Z.]+(\s*[a-zA-Z.]*)*[a-zA-Z.]+$/)
+            Validators.pattern(/^([a-zA-Z0-9.]){3,30}$/)
           ], this.userdataService.checkUsername.bind(this.userdataService)),
 
           'user-password': new FormGroup({
@@ -149,18 +141,14 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
             // Requerido. Nivel de seguridad media/alta
             'password': new FormControl(password, [
             Validators.required,
-            Validators.minLength(8),
-            Validators.maxLength(16),
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,12}$/)
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
           ]),
 
           // - Contraseña
           // Requerido. Nivel de seguridad media/alta
           'passwordCheck': new FormControl(password, [
             Validators.required,
-            Validators.minLength(8),
-            Validators.maxLength(16),
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,12}$/)
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
           ]),
         }, this.customValidators.checkPasswords),
       })
@@ -193,6 +181,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
 
     this.provSubscription = this.userdataForm.get('location').get('province').valueChanges.subscribe(selectedValue => {
       this.citiesLoading = true;
+        this.userdataForm.get('location').get('city').reset();
         this.locationService.getCities(+selectedValue.id).subscribe(response => {
           this.cities = response;
           this.citiesLoading = false;

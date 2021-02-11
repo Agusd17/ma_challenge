@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { SummaryService } from '../services/summary.service';
 import { VehicledataService } from '../services/vehicledata.service';
 
@@ -9,17 +10,21 @@ import { VehicledataService } from '../services/vehicledata.service';
   templateUrl: './vehicledata-form.component.html',
   styleUrls: ['./vehicledata-form.component.scss']
 })
-export class VehicledataFormComponent implements OnInit {
+export class VehicledataFormComponent implements OnInit, OnDestroy {
 
   brands: any[];
   selectedBrand: string = null;
+  brandSubscription: Subscription;
   years: number[] = [];
   currentYear = new Date().getFullYear();
   selectedYear: number = null;
+  yearSubscription: Subscription;
   models: any[];
   selectedModel: string = null;
+  modelSubscription: Subscription;
   versions: any[];
   selectedVersion: string = null;
+  versionSubscription: Subscription;
   brandsLoading: boolean = false;
   modelsLoading: boolean = false;
   versionsLoading: boolean = false;
@@ -36,6 +41,10 @@ export class VehicledataFormComponent implements OnInit {
     this.formInit();
     this.loadBrands();
     this.loadYears();
+    this.onBrandChange();
+    this.onYearChange();
+    this.onModelChange();
+    this.onVersionChange();
   }
 
   formInit() {
@@ -64,6 +73,38 @@ export class VehicledataFormComponent implements OnInit {
         ] )
       });
     }
+  }
+
+  onBrandChange() {
+    this.brandSubscription = this.vehicledataForm.get('brand').valueChanges.subscribe(
+      selectedValue => {
+        this.selectedBrand = selectedValue.codigo;
+        this.loadModels();
+      }
+    )
+  }
+  onYearChange() {
+    this.yearSubscription = this.vehicledataForm.get('year').valueChanges.subscribe(
+      selectedValue => {
+        this.selectedYear = selectedValue;
+        this.loadModels();
+      }
+    )
+  }
+  onModelChange() {
+    this.modelSubscription = this.vehicledataForm.get('model').valueChanges.subscribe(
+      selectedValue => {
+        this.selectedModel = selectedValue;
+        this.loadVersions();
+      }
+    )
+  }
+  onVersionChange() {
+    this.versionSubscription = this.vehicledataForm.get('version').valueChanges.subscribe(
+      selectedValue => {
+        this.selectedVersion = selectedValue;
+      }
+    )
   }
 
   loadBrands() {
@@ -114,6 +155,13 @@ export class VehicledataFormComponent implements OnInit {
   testing() {
     console.log(this.vehicledataForm);
 
+  }
+
+  ngOnDestroy() {
+    this.brandSubscription.unsubscribe();
+    this.yearSubscription.unsubscribe();
+    this.modelSubscription.unsubscribe();
+    this.versionSubscription.unsubscribe();
   }
 
 }

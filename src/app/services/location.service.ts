@@ -35,7 +35,7 @@ export class LocationService {
     .pipe(
       map((responseData:any) => {
         if (responseData.cantidad === 0) {
-          return [{'id': 0, 'nombre': 'Sin municipios'}];
+          return [{'id': -1, 'nombre': 'Sin municipios'}];
         }
         console.log(responseData);
 
@@ -68,14 +68,19 @@ export class LocationService {
     let isCityValid;
     return new Promise<any>(
       (resolve, reject) => {
-        this.http.get(`${this.apiUrl}/municipios?id=${control.value.id}`).subscribe(
-          (response: any) => {
-            isCityValid = response.total;
-            (isCityValid === 0 || response.errores) ? resolve({'cityNotFound': true}) : resolve(null);
-          }, reject => {
-            resolve({ 'cityBadRequest': true });
-          });
-      }
+        if (control.value.id == -1) {
+          resolve(null); // si el id es 0, es porque la opcion elegida es "Sin municipios"
+        } else {
+
+          this.http.get(`${this.apiUrl}/municipios?id=${control.value.id}`).subscribe(
+            (response: any) => {
+              isCityValid = response.total;
+              (isCityValid === 0 || response.errores) ? resolve({'cityNotFound': true}) : resolve(null);
+            }, reject => {
+              resolve({ 'cityBadRequest': true });
+            });
+          }
+        }
     );
   }
 }
