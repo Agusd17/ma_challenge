@@ -60,7 +60,7 @@
           <div class="control-subgroup">
             <div class="control-20">
               <label for="day" class="form-label">Día </label>
-              <input type="text"
+              <input type="number"
               class="form-control"
               formControlName="day"
               id="day">
@@ -72,7 +72,7 @@
 
             <div class="control-20">
               <label for="month" class="form-label">Mes</label>
-              <input type="text"
+              <input type="number"
               class="form-control"
               formControlName="month"
               id="month">
@@ -84,7 +84,7 @@
 
             <div class="control-30">
               <label for="year" class="form-label">Año</label>
-              <input type="text"
+              <input type="number"
               class="form-control"
               formControlName="year"
               id="year">
@@ -93,10 +93,11 @@
           <p
           *ngIf="!userdataForm.get('real-data').get('birthdate').valid && userdataForm.get('real-data').get('birthdate').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('real-data').get('birthdate').get('day').errors['pattern']
-          || userdataForm.get('real-data').get('birthdate').get('month').errors['pattern']
-          || userdataForm.get('real-data').get('birthdate').get('year').errors['pattern']">Fecha inválida. Corrobore que la fecha sea correcta y no haya ingresado caracteres inválidos.</span>
-          <span *ngIf="userdataForm.get('real-data').get('birthdate').errors['ageOutOfRange']">Campo obligatorio. Debe ser mayor a 18 años y menor a 99 años.</span>
+          <span *ngIf="(userdataForm.get('real-data').get('birthdate').get('day').errors && userdataForm.get('real-data').get('birthdate').get('day').errors['pattern'])
+          || (userdataForm.get('real-data').get('birthdate').get('month').errors && userdataForm.get('real-data').get('birthdate').get('month').errors['pattern'])
+          || (userdataForm.get('real-data').get('birthdate').get('year').errors && userdataForm.get('real-data').get('birthdate').get('year').errors['pattern'])">
+          Fecha inválida. Corrobore que la fecha sea correcta y no haya ingresado caracteres inválidos.</span>
+          <span *ngIf="userdataForm.get('real-data').get('birthdate').errors && userdataForm.get('real-data').get('birthdate').errors['ageOutOfRange']">Campo obligatorio. Debe ser mayor a 18 años y menor a 99 años.</span>
         </p>
 
         </div>
@@ -320,14 +321,17 @@
       <div class="text-center">
         <hr>
         <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
-        <!-- COMENTADO PARA TESTEAR FORMS SIGUIENTES
-        <button type="submit"
-        (click)="onSubmit()"
-        class="btn btn-success"
-        [disabled]="!userdataForm.valid"
-        > -->
-        <button type="button" (click)="onSubmit()" class="btn btn-primary">Datos del vehículo></button>
       </div>
     </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <button type="button" (click)="onSubmit()" [disabled]="!userdataForm.valid" class="btn btn-primary btn-block">Datos del vehículo ></button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block">Datos del vehículo ></button>
   </div>
 </div>

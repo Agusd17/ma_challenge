@@ -10,20 +10,22 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6 col-md-8 text-left">
+          <div class="col-sm-12 text-left">
             <p class="card-text prod-desc">{{ productData.descripcion | charReplace:'±':'ñ'}}</p>
-          </div>
-          <div class="col-sm-6 col-md-4 text-right">
-            <p *ngIf="productData.granizo == true" class="extras">Posee cobertura contra granizo</p>
-            <p *ngIf="productData.franquicia != 0" class="extras">Con franquicia de ${{ productData.franquicia }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-8 text-left">
+          <div class="col-sm-12 text-right">
+            <p *ngIf="productData.granizo == true" class="extras">Posee cobertura contra granizo</p>
+            <p *ngIf="productData.franquicia != 0" class="extras">Con franquicia de ${{ productData.franquicia }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-right">
             <p class="precio-text">Costo final por mes: <span class="precio-num">${{ productData.costo }}</span></p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-12">
             <button (click)="selectProduct(productData)"
               class="btn btn-block btn-primary"
               [disabled]="selected === productData.codigoProducto"

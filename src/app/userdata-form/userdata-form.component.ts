@@ -76,7 +76,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
 
             'day': new FormControl(birthdate, [
               Validators.required,
-              Validators.pattern(/^((0)[1-9]|[1-2][0-9]|(3)[0-1])$/)
+              Validators.pattern(/^((0)[1-9]|(1-2)[0-9]|[3][0-1])$/)
             ]),
             'month': new FormControl(birthdate, [
               Validators.required,
@@ -86,7 +86,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
               Validators.required,
               Validators.pattern(/^\d{4}$/)
             ]),
-          }, this.customValidators.ageValidator),
+          }, this.customValidators.ageValidator.bind(this.customValidators)),
         }),
 
         'contact-data': new FormGroup({
@@ -156,7 +156,6 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
     }
 
   }
-
 
   testing() {
     console.log(this.userdataForm);

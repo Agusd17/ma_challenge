@@ -48,7 +48,17 @@
           <option *ngFor="let item of models | sortBy:'asc':'nombre'" [value]="item">{{ item }}</option>
         </select>
       </div>
-
+      <div *ngIf="!vehicledataForm.valid && vehicledataForm.touched" class="col-sm-12">
+        <p *ngIf="!vehicledataForm.get('brand').valid && vehicledataForm.get('brand').touched" class="error-input">
+          <span *ngIf="vehicledataForm.get('brand').errors['required']">Por favor elija una marca.</span>
+        </p>
+        <p *ngIf="!vehicledataForm.get('year').valid && vehicledataForm.get('year').touched" class="error-input">
+          <span *ngIf="vehicledataForm.get('year').errors['required']">Por favor elija un año.</span>
+        </p>
+        <p *ngIf="!vehicledataForm.get('model').valid && vehicledataForm.get('model').touched" class="error-input">
+          <span *ngIf="vehicledataForm.get('model').errors['required']">Por favor elija un modelo.</span>
+        </p>
+      </div>
       <div class="control-75">
         <label for="version" class="form-label">Versión del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <select
@@ -62,13 +72,26 @@
           <option *ngFor="let item of versions | sortBy:'asc':'nombre'" [ngValue]="item">{{ item.desc }}</option>
         </select>
       </div>
+      <div *ngIf="!vehicledataForm.get('version').valid && vehicledataForm.get('version').touched" class="col-sm-12">
+        <p class="error-input">
+          <span *ngIf="vehicledataForm.get('version').errors['required']">Por favor elija una versión.</span>
+        </p>
+      </div>
 
       <div class="text-center">
         <hr>
-        <button type="button" [routerLink]="'../user-data'" class="btn btn-success">< Datos personales</button>
+
         <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
-        <button type="button" (click)="onSubmit()" class="btn btn-primary">Elegir póliza ></button>
+
       </div>
     </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <button type="button" [routerLink]="'../user-data'" class="btn btn-block btn-secondary">< Datos personales</button>
+  </div>
+  <div class="col-sm-6">
+    <button type="button" (click)="onSubmit()" class="btn btn-block btn-primary">Elegir póliza ></button>
   </div>
 </div>

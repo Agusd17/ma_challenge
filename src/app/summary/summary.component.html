@@ -1,56 +1,77 @@
 <div class="row">
-  <div class="col-sm-12 text-center">
+  <div class="col-sm-12 text-center section-title">
     <h3>Resumen:</h3>
     <hr>
-    <div class="row">
-      <div class="col-sm-12">
-        <h5>Datos personales</h5>
-      </div>
-      <div class="col-sm-12 col-lg-6">
-        <p>Nombre:  {{ summary.nombre }} </p>
-        <p>Apellido: {{ summary.apellido }} </p>
-        <p>DNI: {{ summary.documento }} </p>
-        <p>Fecha de nacimiento: {{ summary.nacimiento }} </p>
-        <p>Email: {{ summary.email }} </p>
-        <hr>
-      </div>
-      <div class="col-sm-12 col-lg-6">
-        <p>Teléfono móvil:  {{ summary.nombre }} </p>
-        <p>Teléfono fijo: {{ summary.apellido }} </p>
-        <p>Provincia: {{ summary.provincia.nombre }} </p>
-        <p>Localidad: {{ summary.ciudad.nombre }} </p>
-        <p>Dirección: {{ summary.direccion }} </p>
-        <hr>
-      </div>
-    </div>
-    <div class="col-sm-12">
-      <p>Nombre de usuario: {{ summary.usuario }} </p>
-    </div>
+  </div>
+</div>
+<div class="row summary-inner-cont">
+  <div class="col-sm-12">
+    <h5 class="summary-innertitle">Datos personales</h5>
+    <br>
+  </div>
+  <div class="col-sm-12 col-lg-6">
+    <p><span class="summary-item">Nombre:  </span>{{ (summary.nombre != null && summary.nombre != '') ? summary.nombre : 'No completado' }} </p>
+    <p><span class="summary-item">Apellido: </span>{{ (summary.apellido != null && summary.apellido != '') ? summary.apellido : 'No completado' }} </p>
+    <p><span class="summary-item">DNI: </span>{{ (summary.documento != null && summary.documento != 0) ? summary.documento : 'No completado' }} </p>
+    <p><span class="summary-item">Fecha de nacimiento: </span>{{ (summary.nacimiento != null && summary.nacimiento != '') ? summary.nacimiento : 'No completado' }} </p>
+    <p><span class="summary-item">Email: </span>{{ (summary.email != null && summary.email != '') ? summary.email : 'No completado' }} </p>
+  </div>
+  <div class="col-sm-12 col-lg-6">
+    <p><span class="summary-item">Teléfono móvil:  </span>{{ (summary.numMobile != null && summary.numMobile !=  0) ? summary.numMobile : 'No completado' }} </p>
+    <p><span class="summary-item">Teléfono fijo: </span>{{ (summary.numPhone != null && summary.numPhone != 0) ? summary.numPhone : 'No completado' }} </p>
+    <p><span class="summary-item">Provincia: </span>{{ (summary.provincia.nombre != null && summary.provincia.nombre != '') ? summary.provincia.nombre : 'No completado' }} </p>
+    <p><span class="summary-item">Localidad: </span>{{ (summary.ciudad.nombre != null && summary.ciudad.nombre != '') ? summary.ciudad.nombre : 'No completado' }} </p>
+    <p><span class="summary-item">Dirección: </span>{{ (summary.direccion != null && summary.direccion != '') ? summary.direccion : 'No completado' }} </p>
+  </div>
+  <div class="col-sm-12">
+    <p><span class="summary-item">Nombre de usuario: </span>{{ (summary.usuario != null && summary.usuario != '') ? summary.usuario : 'No completado' }} </p>
+  </div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <button type="button" [routerLink]="'../user-data'" class="btn btn-block btn-secondary">< Cambiar datos personales</button>
+  </div>
+</div>
+<div class="row summary-inner-cont">
+  <div class="col-sm-12">
+    <h5 class="summary-innertitle">Datos del vehículo</h5>
+    <br>
+  </div>
+  <div class="col-sm-6 text-left">
+    <p><span class="summary-item">Marca: </span>{{ (summary.marca.desc != null && summary.marca.desc != '') ? summary.marca.desc : 'No completado' }} </p>
+    <p><span class="summary-item">Año de fabricación: </span>{{ (summary.year != null && summary.year != 0) ? summary.year : 'No completado' }} </p>
+  </div>
+  <div class="col-sm-6 text-left">
+    <p><span class="summary-item">Modelo: </span>{{ (summary.modelo != null && summary.modelo != '') ? summary.modelo : 'No completado' }} </p>
+    <p><span class="summary-item">Versión: </span>{{ (summary.version.desc != null && summary.version.desc != '') ? summary.version.desc : 'No completado' }} </p>
+  </div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-block btn-secondary">< Cambiar datos del vehículo</button>
+  </div>
+</div>
+<div class="row summary-inner-cont">
+  <div class="col-sm-12">
+    <h5 class="summary-innertitle">Póliza elegida</h5>
+    <br>
+  </div>
+  <div class="col-sm-6 text-left">
+    <p><span class="summary-item">Tipo: </span>{{ (summary.poliza != null && summary.poliza != '') ? summary.poliza : 'No completado' }} </p>
+    <p><span class="summary-item">Cubre contra granizo: </span>{{ (summary.granizo != false) ? 'Si' : 'No' }} </p>
+  </div>
+  <div class="col-sm-6 text-left">
+    <p><span class="summary-item">Final por mes: </span>{{ (summary.costo != null && summary.costo != '') ? summary.costo : 'No completado' }} </p>
+    <p><span class="summary-item">Valor de la franquicia: </span>{{ (summary.franquicia != 0) ? summary.franquicia : 'No posee' }} </p>
+  </div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <button type="button" [routerLink]="'../product-data'" class="btn btn-block btn-secondary">< Cambiar póliza</button>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <h5>Datos del vehículo</h5>
-      </div>
-      <div class="col-sm-12">
-        <p>Marca: {{ summary.marca.desc }} </p>
-        <p>Año de fabricación: {{ summary.year }} </p>
-        <p>Modelo: {{ summary.modelo }} </p>
-        <p>Versión: {{ summary.version.desc }} </p>
-        <hr>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <h5>Póliza elegida</h5>
-      </div>
-      <div class="col-sm-12">
-        <p>Tipo: {{ summary.poliza }} </p>
-        <p>Cubre contra granizo: {{ summary.granizo }} </p>
-        <p>Posee franquicia: {{ summary.franquicia }} </p>
-        <p>Final por mes: {{ summary.costo }} </p>
-      </div>
-    </div>
-    <button type="button" [routerLink]="'../product-data'" class="btn btn-success">< Elegir póliza</button>
-    <button type="button" (click)="submitAll()" class="btn btn-primary">Enviar datos ></button>
+
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <button type="button" (click)="submitAll()" class="btn btn-block btn-primary">Enviar datos ></button>
   </div>
 </div>

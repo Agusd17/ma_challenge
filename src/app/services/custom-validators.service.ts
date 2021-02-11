@@ -42,11 +42,33 @@ export class CustomValidatorsService {
   }
 
   ageValidator(fgDate: FormGroup) {
+    let validDate = this.dateValidator(fgDate.get('year').value, (fgDate.get('month').value - 1), fgDate.get('day').value);
+    if (!validDate) {
+      return { dateDoesNotExist: true }
+    }
     let currentDate = new Date();
     let birthdate = new Date(+fgDate.get('year').value, (+fgDate.get('month').value - 1), +fgDate.get('day').value);
     let minDate = new Date(birthdate.getFullYear() + 18, birthdate.getMonth(), birthdate.getDate())
     let maxDate = new Date(birthdate.getFullYear() + 99, birthdate.getMonth(), birthdate.getDate())
     return (minDate <= currentDate && maxDate >= currentDate) ? null : { ageOutOfRange: true };
+  }
+
+  /**
+   * La siguiente funcion compara la fecha ingresada con la fecha convertida, corroborando que la fecha ingresada sea real (no permite por ejemplo, el 30 de febrero)
+   * @param year recibe el año ingresado por input
+   * @param month recibe el mes ingresado por input
+   * @param day recibe el dia ingresado por input
+   */
+  dateValidator(year:number, month:number, day:number) {
+
+    let inputDate = year +'-'+ month +'-'+ day;
+    let d = new Date(year, month, day);
+    let realDate = d.getFullYear() +'-'+ d.getMonth() +'-'+ d.getDate();
+    if (inputDate === realDate) {
+
+      return true;
+    }
+    return false;
   }
 
   checkDni(dni: FormControl) {

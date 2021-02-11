@@ -37,10 +37,10 @@ export class SummaryService {
     this.summary.email = this.userdata.get('contact-data').get('email').value;
 
     this.summary.numMobile = this.userdata.get('contact-data').get('mobilecode').value
-      +'-'+ this.userdata.get('contact-data').get('mobilenum').value;
+      + this.userdata.get('contact-data').get('mobilenum').value;
 
     this.summary.numPhone = this.userdata.get('contact-data').get('phonecode').value
-      +'-'+ this.userdata.get('contact-data').get('phonenum').value;
+      + this.userdata.get('contact-data').get('phonenum').value;
 
     this.summary.provincia = this.userdata.get('location').get('province').value;
 
