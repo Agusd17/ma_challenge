@@ -3,7 +3,7 @@
 Proyecto creado para el Challenge de Mercantil Andina.
 
 ## Listado de componentes de la App
-#### Componentes
+### Componentes
 
 - [`app.component`](#app.component)
 - about.component
@@ -19,7 +19,7 @@ Proyecto creado para el Challenge de Mercantil Andina.
 - userdata-form.component
 - vehicledata-form.component
 
-#### Servicios
+### Servicios
 
 - custom-validator.service
 - location.service
@@ -28,11 +28,11 @@ Proyecto creado para el Challenge de Mercantil Andina.
 - userdata.service
 - vehicledata.service
 
-#### Modelos
+### Modelos
 
 - summary
 
-#### Pipes
+### Pipes
 
 - char-replace
 - sort-by
@@ -40,23 +40,23 @@ Proyecto creado para el Challenge de Mercantil Andina.
 
 ## Descripción de los componentes
 
-#### app.component
+### app.component
 
 Componente principal de la App. Contiene solamente el header, el footer y el router-outlet principal.
 
-#### about.component
+### about.component
 
 Existe solo a modo de mockup para crear una visión de web App mas completa. 
 
-#### footer.component
+### footer.component
 
 Existe solo a modo de mockup para crear una visión de web App mas completa. 
 
-#### header.component
+### header.component
 
 Contiene el menú de navegación principal de la App.
 
-#### product-data.component
+### product-data.component
 
 Se encarga de mostrar la lista de productos disponibles (pólizas), creando un single-product.component por cada uno de ellos. Además indica visualmente el producto seleccionado. No permite continuar con el registro hasta que se elija un producto.
 
