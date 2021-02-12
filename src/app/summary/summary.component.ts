@@ -32,7 +32,6 @@ export class SummaryComponent implements OnInit {
   }
 
   submitAll() {
-    this.summary.apellido = 'Dllano';
     console.log(this.summary);
   }
 }
