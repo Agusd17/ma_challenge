@@ -42,11 +42,6 @@ export class ProductDataComponent implements OnInit, OnDestroy {
     })
   }
 
-  setSelectedProduct(product) {
-    this.selectedProduct = product;
-
-  }
-
   submitData() {
     this.summaryService.saveProductdata();
     this.router.navigate(['../summary'], {relativeTo: this.route})

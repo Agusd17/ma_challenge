@@ -11,8 +11,8 @@ import { VehicledataFormComponent } from './vehicledata-form/vehicledata-form.co
 
 const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full'},
-  {path: 'about', component: AboutComponent},
-  {path: 'products', component: ProductListComponent},
+  { path: 'about', component: AboutComponent},
+  { path: 'products', component: ProductListComponent},
   { path: 'register', component: RegisterComponent, children: [
     {path: '', component: RegisterWelcomeComponent},
     {path: 'user-data', component: UserdataFormComponent},
