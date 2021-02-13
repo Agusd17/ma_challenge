@@ -127,7 +127,7 @@ Presenta la sección de registro de nuevo usuario. Crea un *section-hero-image.c
 
 ## register-welcome.component
 
-Componente inicial en el proceso de registración. Indica los pasos necesarios para el registro (representados por un Lorem Ipsum) y un botón para iniciar el proceso.
+Componente inicial en el proceso de registración. Indica los pasos necesarios para el registro, los requisitos (todo representado por un Lorem Ipsum) y un botón para iniciar el proceso.
 
 ## section-hero-image.component
 
@@ -445,4 +445,16 @@ Modelo de clase que almacena los datos ingresados por el usuario, desde los dos 
 
 ## char-replace.pipe
 
+**Métodos:**
+
+| Método | Definición |
+|---|---|
+|`transform(value: string, chrToReplace: string, replacementChr: string)`|recibe un *value*, un *chrToReplace* y un *replacementChr*, todos de tipo *string*. Evalúa la cadena *value* en busca de caracteres que coincidan con *chrToReplace* y los reemplaza por *replacementChr*. Luego retorna la nueva cadena con los caracteres reemplazados. Si algún argumento falta, retorna la cadena tal cual la recibió.|
+
 ## sort-by.pipe
+
+**Métodos:**
+
+| Método | Definición |
+|---|---|
+|`transform(value: any[], order = '', column: string = '')`|recibe un array de elementos y los ordena de manera ascendente ('asc') o descendente ('desc'), según se especifique al aplicar el pipe. Puede especificarse una columna del array por la cual prefiera ordenarse.|
