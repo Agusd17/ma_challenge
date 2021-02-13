@@ -41,7 +41,7 @@ Proyecto creado para el Challenge de Mercantil Andina.
 
 ## app.component
 
-Componente principal de la App. Contiene solamente el header, el footer y el router-outlet principal.
+Componente principal de la App. Crea el header, el footer y el router-outlet principal.
 
 ## about.component
 
@@ -127,7 +127,7 @@ Presenta la sección de registro de nuevo usuario. Crea un *section-hero-image.c
 
 ## register-welcome.component
 
-Componente inicial en el proceso de registración. Indicaría los pasos necesarios para el registro (representados por un Lorem Ipsum) y un botón para iniciar el proceso.
+Componente inicial en el proceso de registración. Indica los pasos necesarios para el registro (representados por un Lorem Ipsum) y un botón para iniciar el proceso.
 
 ## section-hero-image.component
 
