@@ -6,27 +6,27 @@ Proyecto creado para el Challenge de Mercantil Andina.
 
 ### Componentes
 
-- [app.component](#app.component)
-- [about.component](#about.component)
-- [footer.component](#footer.component)
-- [header.component](#header.component)
-- [product-data.component](#product-data.component)
-- [single-product.component](#single-product.component)
-- [register.component](#register.component)
-- [register-welcome.component](#register-welcome.component)
-- [section-hero-image.component](#section-hero-image.component)
-- [summary.component](#summary.component)
-- [userdata-form.component](#userdata-form.component)
-- [vehicledata-form.component](#vehicledata-form.component)
+- [app.component](#appcomponent)
+- [about.component](#aboutcomponent)
+- [footer.component](#footercomponent)
+- [header.component](#headercomponent)
+- [product-data.component](#product-datacomponent)
+- [single-product.component](#single-productcomponent)
+- [register.component](#registercomponent)
+- [register-welcome.component](#register-welcomecomponent)
+- [section-hero-image.component](#section-hero-imagecomponent)
+- [summary.component](#summarycomponent)
+- [userdata-form.component](#userdata-formcomponent)
+- [vehicledata-form.component](#vehicledata-formcomponent)
 
 ### Servicios
 
-- [custom-validator.service](#custom-validator.service)
-- [location.service](#location.service)
-- [products.service](#products.service)
-- [summary.service](#summary.service)
-- [userdata.service](#userdata.service)
-- [vehicledata.service](#vehicledata.service)
+- [custom-validator.service](#custom-validatorservice)
+- [location.service](#locationservice)
+- [products.service](#productsservice)
+- [summary.service](#summaryservice)
+- [userdata.service](#userdataservice)
+- [vehicledata.service](#vehicledataservice)
 
 ### Modelos
 
