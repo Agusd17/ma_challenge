@@ -21,7 +21,13 @@ export class SummaryService {
     private productsService: ProductsService
   ) { }
 
+  /**
+   * Solicita el formulario guardado en 'userdataService'.
+   * Asigna los valores del formulario recibido a los atributos correspondientes de 'summary'.
+   * No realiza validaciones sobre el mismo de ningún tipo.
+   */
   saveUserdata() {
+
     this.userdata = this.userdataService.getForm();
 
     this.summary.nombre = this.userdata.get('real-data').get('firstname').value;
@@ -55,7 +61,13 @@ export class SummaryService {
     console.log(this.summary);
   }
 
+  /**
+   * Solicita el formulario guardado en 'vehicledataService'.
+   * Asigna los valores del formulario recibido a los atributos correspondientes de 'summary'.
+   * No realiza validaciones sobre el mismo de ningún tipo.
+   */
   saveVehicledata() {
+
     this.vehicledata = this.vehicledataService.getForm();
 
     this.summary.marca = this.vehicledata.get('brand').value;
@@ -68,7 +80,13 @@ export class SummaryService {
 
   }
 
+  /**
+   * Solicita el objeto guardado en 'productsService'.
+   * Asigna los valores de los atributos del objeto recibido a los atributos correspondientes de 'summary'.
+   * No realiza validaciones sobre el mismo de ningún tipo.
+   */
   saveProductdata() {
+
     this.productdata = this.productsService.getSelected();
 
     this.summary.poliza = this.productdata.titulo;
@@ -81,12 +99,24 @@ export class SummaryService {
 
   }
 
+  /**
+   * Devuelve el objeto 'summary'.
+   */
   getSummary() {
+
     return this.summary;
   }
 
+  /**
+   * Comprueba que los formularios sigan siendo válidos y simula el envío de los datos.
+   * devuelte un array ['mensaje', 'código'] según corresponda.
+   */
   sendData() {
-    if (this.userdata?.valid && this.vehicledata?.valid && this.productdata != undefined) {
+
+    if (this.userdata?.valid && this.vehicledata?.valid && this.productdata != undefined && this.productdata != null) {
+
+      /* Acá se enviarían los datos por POST a la API correspondiente... */
+
       return ['Los datos se enviaron con éxito.', 1];
     }
     return ['No se enviaron los datos. Revise que los mismos sean correctos.', 0];

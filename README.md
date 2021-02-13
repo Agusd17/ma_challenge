@@ -6,36 +6,36 @@ Proyecto creado para el Challenge de Mercantil Andina.
 
 ### Componentes
 
-- [`app.component`](#app.component)
-- [`about.component`](#about.component)
-- [`footer.component`](#footer.component)
-- [`header.component`](#header.component)
-- [`product-data.component`](#product-data.component)
-- [`single-product.component`](#single-product.component)
-- [`register.component`](#register.component)
-- [`register-welcome.component`](#register-welcome.component)
-- [`section-hero-image.component`](#section-hero-image.component)
-- [`summary.component`](#summary.component)
-- [`userdata-form.component`](#userdata-form.component)
-- [`vehicledata-form.component`](#vehicledata-form.component)
+- [app.component](#app.component)
+- [about.component](#about.component)
+- [footer.component](#footer.component)
+- [header.component](#header.component)
+- [product-data.component](#product-data.component)
+- [single-product.component](#single-product.component)
+- [register.component](#register.component)
+- [register-welcome.component](#register-welcome.component)
+- [section-hero-image.component](#section-hero-image.component)
+- [summary.component](#summary.component)
+- [userdata-form.component](#userdata-form.component)
+- [vehicledata-form.component](#vehicledata-form.component)
 
 ### Servicios
 
-- [`custom-validator.service`](#custom-validator.service)
-- [`location.service`](#location.service)
-- [`products.service`](#products.service)
-- [`summary.service`](#summary.service)
-- [`userdata.service`](#userdata.service)
-- [`vehicledata.service`](#vehicledata.service)
+- [custom-validator.service](#custom-validator.service)
+- [location.service](#location.service)
+- [products.service](#products.service)
+- [summary.service](#summary.service)
+- [userdata.service](#userdata.service)
+- [vehicledata.service](#vehicledata.service)
 
 ### Modelos
 
-- [`summary`](#summary)
+- [summary](#summary)
 
 ### Pipes
 
-- [`char-replace.pipe`](#char-replace)
-- [`sort-by.pipe`](#sort-by)
+- [char-replace.pipe](#char-replace)
+- [sort-by.pipe](#sort-by)
 
 ## Descripción de los componentes
 
@@ -81,10 +81,10 @@ Se encarga de mostrar la lista de productos disponibles (pólizas), creando un *
 
 | Método | Definición |
 |---|---|
-| ngOnInit() | inicializa la variable *subscription* suscribiéndola al Subject *selectedProductChanged* del servicio *products.service*. Inicializa el método *loadProducts()*|
-| loadProducts() | setea el flag *productsLoading* a **true**, y se suscribe al método *getProducts* del servicio *products.service*. Guarda los productos devueltos por el método en la variable *products* y setea el flag *productsLoading* a **false**.|
-| submitDat()a | guarda la selección del usuario y redirecciona al componente *summary.component*.|
-| ngOnDestroy() | desuscribe la variable *subscription* al destruir el componente.|
+|`ngOnInit()`| inicializa la variable *subscription* suscribiéndola al Subject *selectedProductChanged* del servicio *products.service*. Inicializa el método *loadProducts()*|
+|`loadProducts()`| setea el flag *productsLoading* a **true**, y se suscribe al método *getProducts* del servicio *products.service*. Guarda los productos devueltos por el método en la variable *products* y setea el flag *productsLoading* a **false**.|
+|`submitData()`| guarda la selección del usuario y redirecciona al componente *summary.component*.|
+|`ngOnDestroy()`| desuscribe la variable *subscription* al destruir el componente.|
 
 ## single-product.component
 
@@ -109,9 +109,9 @@ Creado por *product-data.component*, recibe un objeto mediante un *@Input()* con
 
 | Método | Definición |
 |---|---|
-|ngOnInit()| solicita al servicio *products.service* para que le devuelva el producto seleccionado actualmente por el usuario. Genera un array de valores igual al puntaje del producto (se utilizará luego dicho array para generar la cantidad de estrellas correspondientes al producto). Inicializa la variable *subscription* suscribiéndola al Subject *selectedProductChanged* del servicio *products.service*.|
-|selectProduct()| se ejecuta cuando el usuario elige el producto al que este componente refiere. Envía el producto como objeto al servicio *products.service* para guardar la selección del usuario.|
-|ngOnDestroy()| desuscribe la variable *subscription* al destruir el componente.|
+|`ngOnInit()`| solicita al servicio *products.service* para que le devuelva el producto seleccionado actualmente por el usuario. Genera un array de valores igual al puntaje del producto (se utilizará luego dicho array para generar la cantidad de estrellas correspondientes al producto). Inicializa la variable *subscription* suscribiéndola al Subject *selectedProductChanged* del servicio *products.service*.|
+|`selectProduct()`| se ejecuta cuando el usuario elige el producto al que este componente refiere. Envía el producto como objeto al servicio *products.service* para guardar la selección del usuario.|
+|`ngOnDestroy()`| desuscribe la variable *subscription* al destruir el componente.|
 
 ## register.component
 
@@ -165,8 +165,8 @@ Muestra un resumen de los datos ingresados por el usuario durante el proceso de 
 
 | Método | Definición |
 |---|---|
-|ngOnInit()|recupera y asigna al objeto *summary* la instancia correspondiente guardada en el servicio *summary.service*.|
-|submitAll()|envía toda la información para su procesamiento. Recibe un mensaje de éxito o error, según corresponda, para mostrar al usuario.|
+|`ngOnInit()`|recupera y asigna al objeto *summary* la instancia correspondiente guardada en el servicio *summary.service*.|
+|`submitAll()`|envía toda la información para su procesamiento. Recibe un mensaje de éxito o error, según corresponda, para mostrar al usuario.|
 
 ## userdata-form.component
 
@@ -198,12 +198,12 @@ Formulario (reactive form) de alta de datos personales del usuario. Colecta toda
 
 | Método | Definición |
 |---|---|
-|ngOnInit()|inicializa los métodos *formInit()*, *loadProvinces()* y *onProvinceChanges()*.|
-|formInit()|instancia el objeto *userdataForm*, seteando todos los controles y sus diferentes validadores. Chequea si existe una instancia del formulario previamente creada (por ejemplo, si se completó previamente el formulario, pero se regresó al componente para revisar datos). En caso afirmativo, se setea al mismo como la instancia actual, en caso negativo, se inicializa vacío.|
-|onSubmit()|envía una copia del objeto *userdataForm* al servicio *userdata.service* para ser guardado. Ejecuta el método *saveUserData* del servicio *summary.service*. Por último, redirecciona al siguiente paso de registro.|
-|loadProvinces()|recupera la lista de provincias del servicio *location.service* a través de una suscripción.|
-|onProvinceChanges()|monitorea los cambios que ocurran en el control 'provinces' (de tipo select) a través de una suscripción, reaccionando a la elección de provincia del usuario. Cuando ocurre un cambio, resetea el control 'city' (también de tipo select) y consulta al servicio *location.service* a través de una suscripción, por las ciudades correspondientes a la provincia seleccionada. Finalmente, carga el control 'city' con las ciudades devueltas por el servicio.|
-|ngOnDestroy()|desuscribe la variable *provSubscription* al destruir el componente.|
+|`ngOnInit()`|inicializa los métodos *formInit()*, *loadProvinces()* y *onProvinceChanges()*.|
+|`formInit()`|instancia el objeto *userdataForm*, seteando todos los controles y sus diferentes validadores. Chequea si existe una instancia del formulario previamente creada (por ejemplo, si se completó previamente el formulario, pero se regresó al componente para revisar datos). En caso afirmativo, se setea al mismo como la instancia actual, en caso negativo, se inicializa vacío.|
+|`onSubmit()`|envía una copia del objeto *userdataForm* al servicio *userdata.service* para ser guardado. Ejecuta el método *saveUserData* del servicio *summary.service*. Por último, redirecciona al siguiente paso de registro.|
+|`loadProvinces()`|recupera la lista de provincias del servicio *location.service* a través de una suscripción.|
+|`onProvinceChanges()`|monitorea los cambios que ocurran en el control 'provinces' (de tipo select) a través de una suscripción, reaccionando a la elección de provincia del usuario. Cuando ocurre un cambio, resetea el control 'city' (también de tipo select) y consulta al servicio *location.service* a través de una suscripción, por las ciudades correspondientes a la provincia seleccionada. Finalmente, carga el control 'city' con las ciudades devueltas por el servicio.|
+|`ngOnDestroy()`|desuscribe la variable *provSubscription* al destruir el componente.|
 
 ## vehicledata-form.component
 
@@ -244,18 +244,18 @@ Formulario (reactive form) de alta de datos del vehículo. Colecta la informaci�
 
 | Método | Definición |
 |---|---|
-|ngOnInit()|inicializa los métodos *formInit()*, *loadBrands()*, *loadYears()*, *onBrandChange()*, *onYearChange()*, *onModelChange()*, *onVersionChange()*.|
-|formInit()|instancia el objeto *vehicledataForm*, seteando todos los controles y sus diferentes validadores. Chequea si existe una instancia del formulario previamente creada (por ejemplo, si se completó previamente el formulario, pero se regresó al componente para revisar datos). En caso afirmativo, se setea al mismo como la instancia actual, en caso negativo, se inicializa vacío.|
-|onBrandChange()|monitorea los cambios que ocurran en el control 'brand' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedBrand* y ejecuta el método *loadModels()*.|
-|onYearChange()|monitorea los cambios que ocurran en el control 'year' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedYear* y ejecuta el método *loadModels()*.|
-|onModelChange()|monitorea los cambios que ocurran en el control 'model' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedModel* y ejecuta el método *loadVersions()*.|
-|onVersionChange()|monitorea los cambios que ocurran en el control 'version' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedVersion*.|
-|loadBrands()|recupera la lista de marcas del servicio *vehicledata.service* a través de una suscripción.|
-|loadYears()|genera una lista de 20 años, partiendo desde el año actual, hacia atrás.|
-|loadModels()|recupera la lista de modelos del servicio *vehicledata.service* a través de una suscripción.|
-|loadVersions()|recupera la lista de versiones del servicio *vehicledata.service* a través de una suscripción.|
-|onSubmit()|envía una copia del objeto *vehicledataForm* al servicio *vehicledata.service* para ser guardado. Ejecuta el método *saveVehicleData* del servicio *summary.service*. Por último, redirecciona al siguiente paso de registro.|
-|ngOnDestroy()|finaliza las suscripciones de las variables *brandSubscription*, *yearSubscription*, *modelSubscription* y *versionSubscription* al destruir el componente.|
+|`ngOnInit()`|inicializa los métodos *formInit()*, *loadBrands()*, *loadYears()*, *onBrandChange()*, *onYearChange()*, *onModelChange()*, *onVersionChange()*.|
+|`formInit()`|instancia el objeto *vehicledataForm*, seteando todos los controles y sus diferentes validadores. Chequea si existe una instancia del formulario previamente creada (por ejemplo, si se completó previamente el formulario, pero se regresó al componente para revisar datos). En caso afirmativo, se setea al mismo como la instancia actual, en caso negativo, se inicializa vacío.|
+|`onBrandChange()`|monitorea los cambios que ocurran en el control 'brand' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedBrand* y ejecuta el método *loadModels()*.|
+|`onYearChange()`|monitorea los cambios que ocurran en el control 'year' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedYear* y ejecuta el método *loadModels()*.|
+|`onModelChange()`|monitorea los cambios que ocurran en el control 'model' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedModel* y ejecuta el método *loadVersions()*.|
+|`onVersionChange()`|monitorea los cambios que ocurran en el control 'version' (de tipo select) a través de una suscripción, reaccionando a la elección de marca del usuario. Cuando ocurre un cambio, guarda la opción elegida en la variable *selectedVersion*.|
+|`loadBrands()`|recupera la lista de marcas del servicio *vehicledata.service* a través de una suscripción.|
+|`loadYears()`|genera una lista de 20 años, partiendo desde el año actual, hacia atrás.|
+|`loadModels()`|recupera la lista de modelos del servicio *vehicledata.service* a través de una suscripción.|
+|`loadVersions()`|recupera la lista de versiones del servicio *vehicledata.service* a través de una suscripción.|
+|`onSubmit()`|envía una copia del objeto *vehicledataForm* al servicio *vehicledata.service* para ser guardado. Ejecuta el método *saveVehicleData* del servicio *summary.service*. Por último, redirecciona al siguiente paso de registro.|
+|`ngOnDestroy()`|finaliza las suscripciones de las variables *brandSubscription*, *yearSubscription*, *modelSubscription* y *versionSubscription* al destruir el componente.|
 
 ## Descripción de los servicios
 
@@ -267,12 +267,12 @@ Almacena validadores creados a medida, utilizados en los formularios de alta de 
 
 | Método | Definición |
 |---|---|
-|checkPasswords()|Recibe un *FormGroup* con dos controles: *password* y *passwordCheck*. Compara el valor de ambos controles y, de ser diferentes, retorna un error 'passDiffer'.|
-|areaCodeValidator()|recibe un *FormControl* y chequea que esté seteado (distinto de **null**) y que  su valor sea mayor a 9 y menor a 10000 (que tenga entre 2 y 4 dígitos y constituya un entero positivo). Si no cumple dichas condiciones, devuelve un error 'areaCodeOutOfRange'.|
-|phoneNumberValidator()|recibe un *FormControl* y chequea que esté seteado (distinto de **null**) y que  su valor sea mayor a 99999 y menor a 100000000 (que tenga entre 6 y 8 dígitos y constituya un entero positivo). Si no cumple dichas condiciones, devuelve un error 'phoneNumberOutOfRange'.|
-|ageValidator()|recibe un *FormGroup* compuesto por tres controles: *year*, *month* y *day*. Ejecuta el método *dateValidator()* pasando como argumentos los valores de los controles recibidos. Recibe como respuesta un booleano. Devuelve un error 'dateDoesNotExist' si el booleano recibido es **false**. Luego (solo si el booleano anterior resultó **true**) evalúa si, en base a la fecha ingresada, el usuario posee 18 o más años, y/o 99 o menos años. Caso contrario, devuelve un error 'ageOutOfRange'.|
-|dateValidator()|recibe como argumentos un año, un mes y un día (en formato numérico). Crea una fecha de tipo *Date()* basada en esos argumentos y corrobora que se trate de una fecha válida (no permite el 30 de febrero por ejemplo). Luego retorna **true** si tuvo éxito o **false** si la fecha resultó inválida.|
-|checkDni()|recibe un *FormControl* como argumento, y evalua que el valor del mismo sea mayor a 999999 y menor a 100000000 (que tenga entre 7 y 8 dígitos y constituya un entero positivo). Si no cumple dichas condicones, devuelve un error 'dniOutOfRange'.|
+|`checkPasswords(group: FormGroup)`|Recibe un *FormGroup* con dos controles: *password* y *passwordCheck*. Compara el valor de ambos controles y, de ser diferentes, retorna un error 'passDiffer'.|
+|`areaCodeValidator(control: FormControl)`|recibe un *FormControl* y chequea que esté seteado (distinto de **null**) y que  su valor sea mayor a 9 y menor a 10000 (que tenga entre 2 y 4 dígitos y constituya un entero positivo). Si no cumple dichas condiciones, devuelve un error 'areaCodeOutOfRange'.|
+|`phoneNumberValidator(control: FormControl)`|recibe un *FormControl* y chequea que esté seteado (distinto de **null**) y que  su valor sea mayor a 99999 y menor a 100000000 (que tenga entre 6 y 8 dígitos y constituya un entero positivo). Si no cumple dichas condiciones, devuelve un error 'phoneNumberOutOfRange'.|
+|`ageValidator(fgDate: FormGroup)`|recibe un *FormGroup* compuesto por tres controles: *year*, *month* y *day*. Ejecuta el método *dateValidator()* pasando como argumentos los valores de los controles recibidos. Recibe como respuesta un booleano. Devuelve un error 'dateDoesNotExist' si el booleano recibido es **false**. Luego (solo si el booleano anterior resultó **true**) evalúa si, en base a la fecha ingresada, el usuario posee 18 o más años, y/o 99 o menos años. Caso contrario, devuelve un error 'ageOutOfRange'.|
+|`dateValidator(year:number, month:number, day:number)`|recibe como argumentos un año, un mes y un día (en formato numérico). Crea una fecha de tipo *Date()* basada en esos argumentos y corrobora que se trate de una fecha válida (no permite el 30 de febrero por ejemplo). Luego retorna **true** si tuvo éxito o **false** si la fecha resultó inválida.|
+|`checkDni(dni: FormControl)`|recibe un *FormControl* como argumento, y evalua que el valor del mismo sea mayor a 999999 y menor a 100000000 (que tenga entre 7 y 8 dígitos y constituya un entero positivo). Si no cumple dichas condicones, devuelve un error 'dniOutOfRange'.|
 
 ## location.service
 
@@ -294,10 +294,10 @@ Se encarga de comunicarse con el servicio web GeoRef y realizar las consultas pe
 
 | Método | Definición |
 |---|---|
-|getProvinces()|solicita a la *API* el listado de provincias disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de provincias o un error, según corresponda.|
-|getCities()|solicita a la *API* el listado de ciudades disponibles, de acuerdo a la provincia recibida por parámetro. Mapea la respuesta a través de un pipe y devuelve el listado de ciudades, un array 'Sin Municipios' (si se consultan por ejemplo, los municipios pertenecientes a la 'Ciudad Autónoma de Buenos Aires', la *API* devuelve un array vacío) o un error, según corresponda.|
-|provinceValidator()|corrobora que la provincia recibida por parámetro exista en la *API*. Si no existe, devuelve un error 'provinceNotFound'. Si existe un problema al intentar consultar a la *API*, devuelve un error 'provinceBadRequest'.|
-|cityValidator()|corrobora que la ciudad recibida por parámetro exista en la *API*. Si no existe, devuelve un error 'cityNotFound'. Si existe un problema al intentar consultar a la *API*, devuelve un error 'cityBadRequest'. Si se trata de la opción 'Sin Municipios', no retorna errores.|
+|`getProvinces()`|solicita a la *API* el listado de provincias disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de provincias o un error, según corresponda.|
+|`getCities(id: number)`|solicita a la *API* el listado de ciudades disponibles, de acuerdo a la id de provincia recibida por parámetro. Mapea la respuesta a través de un pipe y devuelve el listado de ciudades, un array 'Sin Municipios' (si se consultan por ejemplo, los municipios pertenecientes a la 'Ciudad Autónoma de Buenos Aires', la *API* devuelve un array vacío) o un error, según corresponda.|
+|`provinceValidator(control: FormControl)`|corrobora que la provincia recibida por parámetro exista en la *API*. Si no existe, devuelve un error 'provinceNotFound'. Si existe un problema al intentar consultar a la *API*, devuelve un error 'provinceBadRequest'.|
+|`cityValidator(control: FormControl)`|corrobora que la ciudad recibida por parámetro exista en la *API*. Si no existe, devuelve un error 'cityNotFound'. Si existe un problema al intentar consultar a la *API*, devuelve un error 'cityBadRequest'. Si se trata de la opción 'Sin Municipios', no retorna errores.|
 
 ## products.service
 
@@ -321,9 +321,9 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 
 | Método | Definición |
 |---|---|
-|getProducts()|solicita a la *API* el listado de productos (pólizas) disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de productos o un error, según corresponda.|
-|setSelectedProduct()|guarda un objeto con el producto elegido en la variable *selectedProduct* y emite un evento nuevo a través de *selectedProductChanged*.|
-|getSelected()|devuelve el objeto almacenado en *selectedProduct*.|
+|`getProducts()`|solicita a la *API* el listado de productos (pólizas) disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de productos o un error, según corresponda.|
+|`setSelectedProduct(product: any)`|guarda un objeto con el producto elegido en la variable *selectedProduct* y emite un evento nuevo a través de *selectedProductChanged*.|
+|`getSelected()`|devuelve el objeto almacenado en *selectedProduct*.|
 
 ## summary.service
 
@@ -350,11 +350,11 @@ Se encarga de recopilar la información que ingresa el usuario para mostrarla al
 
 | Método | Definición |
 |---|---|
-|saveUserdata()|solicita una copia del *FormGroup* almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *userdata*. Luego asigna los valores de los controles de dicho *FormGroup* a los atributos correspondientes del objeto *summary*.|
-|saveVehicledata()|solicita una copia del *FormGroup* almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *vehicledata*. Luego asigna los valores de los controles de dicho *FormGroup* a los atributos correspondientes del objeto *summary*.|
-|saveProductdata()|solicita una copia del producto (póliza) almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *productdata*. Luego asigna los valores de los atributos del objeto recibido a los correspondientes del objeto *summary*.|
-|getSummary()|devuelve el objeto *summary*.|
-|sendData()|corrobora que los dos formularios *userdata* y *vehicledata* posean el status de válidos (es decir, hayan sido validados correctamente) y que exista un objeto *productdata*. Si la evaluación es afirmativa, retorna una respuesta simulada de 'envío de datos satisfactorios'. Caso contrario envía un mensaje de error.|
+|`saveUserdata()`|solicita una copia del *FormGroup* almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *userdata*. Luego asigna los valores de los controles de dicho *FormGroup* a los atributos correspondientes del objeto *summary*.|
+|`saveVehicledata()`|solicita una copia del *FormGroup* almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *vehicledata*. Luego asigna los valores de los controles de dicho *FormGroup* a los atributos correspondientes del objeto *summary*.|
+|`saveProductdata()`|solicita una copia del producto (póliza) almacenado en el servicio *userdata.service* y guarda dicha copia en la variable *productdata*. Luego asigna los valores de los atributos del objeto recibido a los correspondientes del objeto *summary*.|
+|`getSummary()`|devuelve el objeto *summary*.|
+|`sendData()`|corrobora que los dos formularios *userdata* y *vehicledata* posean el status de válidos (es decir, hayan sido validados correctamente) y que exista un objeto *productdata*. Si la evaluación es afirmativa, retorna una respuesta simulada de 'envío de datos satisfactorios'. Caso contrario envía un mensaje de error.|
 
 ## userdata.service
 
@@ -377,10 +377,10 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 
 | Método | Definición |
 |---|---|
-|saveForm()|guarda una copia del *FormGroup* recibido por parámetro, en la variable *userdataForm*.|
-|isDataStored()|retorna **true** si existe data guardada en la variable *userdataForm*.|
-|getForm()|devuelve el objeto *FormGroup* almacenado en *userdataForm*.|
-|checkUsername()|recibe un control por parámetro. Consulta a la *API* por el valor del mismo (un string), para corroborar si ya existe un registro similar al consultado. En caso afirmativo, retorna un error 'usernameIsInvalid'. Si el request falla, retorna un error 'usernameBadRequest'.|
+|`saveForm(inputData: FormGroup)`|guarda una copia del *FormGroup* recibido por parámetro, en la variable *userdataForm*.|
+|`isDataStored()`|retorna **true** si existe data guardada en la variable *userdataForm*.|
+|`getForm()`|devuelve el objeto *FormGroup* almacenado en *userdataForm*.|
+|`checkUsername(control: FormControl)`|recibe un control por parámetro. Retorna una promesa. Consulta a la *API* por el valor del control (un string), para corroborar si ya existe un registro similar al consultado. En caso afirmativo, resuelve un error 'usernameIsInvalid'. Si el string no existe, resuelve *null*. Si el request falla, resuelve un error 'usernameBadRequest'.|
 
 ## vehicledata.service
 
@@ -403,12 +403,12 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 
 | Método | Definición |
 |---|---|
-|saveForm()| guarda una copia del *FormGroup* recibido por parámetro, en la variable *vehicledataForm*.|
-|isDataStored()| retorna **true** si existe data guardada en la variable *vehicledataForm*.|
-|getForm()| devuelve el objeto *FormGroup* almacenado en *vehicledataForm*.|
-|getBrands()| solicita a la *API* el listado de marcas disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
-|getModels()| recibe una marca y un año como argumentos. Solicita a la *API* el listado de modelos disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
-|getVersions()| recibe una marca, un año y un modelo como argumentos. Solicita a la *API* el listado de versiones disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
+|`saveForm(inputData: FormGroup)`| guarda una copia del *FormGroup* recibido por parámetro, en la variable *vehicledataForm*.|
+|`isDataStored()`| retorna **true** si existe data guardada en la variable *vehicledataForm*.|
+|`getForm()`| devuelve el objeto *FormGroup* almacenado en *vehicledataForm*.|
+|`getBrands()`| solicita a la *API* el listado de marcas disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
+|`getModels(brand: string, year: number)`| recibe una marca y un año como argumentos. Solicita a la *API* el listado de modelos disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
+|`getVersions(brand: string, year: number, model: string)`| recibe una marca, un año y un modelo como argumentos. Solicita a la *API* el listado de versiones disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
 
 ## Descripción de los modelos
 

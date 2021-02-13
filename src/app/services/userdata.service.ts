@@ -13,19 +13,37 @@ export class UserdataService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Guarda una instancia del Form recibido.
+   * @param inputData FormGroup a guardar.
+   */
   saveForm(inputData: FormGroup) {
+
     this.userdataForm = inputData;
   }
 
+  /**
+   * Verifica que exista un FormGroup guardado en el servicio, distinto de null.
+   * Devuelve el resultado de la verificación.
+   */
   isDataStored():boolean {
+
     return (this.userdataForm != null);
   }
 
+  /**
+   * Devuelve el FormGroup almacenado en el servicio
+   */
   getForm(): FormGroup {
+
     return this.userdataForm;
   }
 
-  // async validator
+  /**
+   * Validador asincrónico que comprueba si el valor del control recibido ('username') ya existe en la API.
+   * Devuelve un error si ya existe.
+   * @param control FormControl que contiene el string a verificar.
+   */
   checkUsername(control: FormControl): Promise<any> | Observable<any> {
 
     var isUsernameValid;

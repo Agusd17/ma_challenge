@@ -13,7 +13,11 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Consulta a la API por el listado de provincias. Devuelve las provincias, o un error.
+   */
   getProvinces() {
+
     return this.http.get(
       `${this.apiUrl}/provincias`
     )
@@ -27,6 +31,10 @@ export class LocationService {
       }))
   }
 
+  /**
+   * Consulta a la API por el listado de municipios que pertenezcan a la id recibida. Devuelve los municipios, un array especial 'Sin Municipios', o un error.
+   * @param id el id de la provincia cuyos municipios se desean consultar
+   */
   getCities(id: number) {
 
     return this.http.get(
@@ -48,8 +56,14 @@ export class LocationService {
 
   }
 
-  // async validators
+ /**
+  * Validador asincrónico que verifica que la provincia seleccionada en el control sea real, y no haya sido modificada forzosamente.
+  * Devuelve un error si la provincia no existe.
+  * Devuelve un error si la consulta no se pudo realizar.
+  * @param control provincia a evaluar, elegida en el control.
+  */
   provinceValidator(control: FormControl): Promise<any> | Observable<any> {
+
     let isProvinceValid;
     return new Promise<any>(
       (resolve, reject) => {
@@ -64,7 +78,15 @@ export class LocationService {
     );
   }
 
+  /**
+   * Validador asincrónico que verifica que el municipio seleccionado en el control sea real, y no haya sido modificado forzosamente.
+   * Devuelve un error si el municipio no existe.
+   * No se ejecuta validación si el id del control es '-1', ya que corresponde a la opción 'Sin Municipios'.
+   * Devuelve un error si la consulta no se pudo realizar.
+   * @param control
+   */
   cityValidator(control: FormControl): Promise<any> | Observable<any> {
+
     let isCityValid;
     return new Promise<any>(
       (resolve, reject) => {
