@@ -9,7 +9,6 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProductsService {
 
-  dataForm: FormGroup = null;
   private apiUrl: string = 'https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1';
   selectedProduct: any = null;
   selectedProductChanged = new Subject<any>();

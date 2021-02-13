@@ -18,7 +18,7 @@ export class SummaryService {
   constructor(
     private userdataService: UserdataService,
     private vehicledataService: VehicledataService,
-    private productdataService: ProductsService
+    private productsService: ProductsService
   ) { }
 
   saveUserdata() {
@@ -50,6 +50,8 @@ export class SummaryService {
 
     this.summary.usuario = this.userdata.get('user-data').get('username').value;
 
+    this.summary.passwd = this.userdata.get('user-data').get('user-password').get('password').value;
+
     console.log(this.summary);
   }
 
@@ -67,7 +69,7 @@ export class SummaryService {
   }
 
   saveProductdata() {
-    this.productdata = this.productdataService.getSelected();
+    this.productdata = this.productsService.getSelected();
 
     this.summary.poliza = this.productdata.titulo;
 
@@ -81,6 +83,13 @@ export class SummaryService {
 
   getSummary() {
     return this.summary;
+  }
+
+  sendData() {
+    if (this.userdata?.valid && this.vehicledata?.valid && this.productdata != undefined) {
+      return ['Los datos se enviaron con éxito.', 1];
+    }
+    return ['No se enviaron los datos. Revise que los mismos sean correctos.', 0];
   }
 
 }

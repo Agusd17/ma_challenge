@@ -76,11 +76,11 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
 
             'day': new FormControl(birthdate, [
               Validators.required,
-              Validators.pattern(/^((0)[1-9]|(1-2)[0-9]|[3][0-1])$/)
+              Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])$/)
             ]),
             'month': new FormControl(birthdate, [
               Validators.required,
-              Validators.pattern(/^(((0)[1-9])|((1)[0-2]))$/)
+              Validators.pattern(/^(0?[1-9]|1[012])$/)
             ]),
             'year': new FormControl(birthdate, [
               Validators.required,
@@ -137,21 +137,21 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
 
           'user-password': new FormGroup({
 
+              // - Contraseña
+              // Requerido. Nivel de seguridad media/alta
+              'password': new FormControl(password, [
+              Validators.required,
+              Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
+            ]),
+
             // - Contraseña
             // Requerido. Nivel de seguridad media/alta
-            'password': new FormControl(password, [
-            Validators.required,
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
-          ]),
-
-          // - Contraseña
-          // Requerido. Nivel de seguridad media/alta
-          'passwordCheck': new FormControl(password, [
-            Validators.required,
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
-          ]),
-        }, this.customValidators.checkPasswords),
-      })
+              'passwordCheck': new FormControl(password, [
+              Validators.required,
+              Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%?&]{8,16}$/)
+            ]),
+          }, this.customValidators.checkPasswords),
+        })
       });
     }
 

@@ -33,8 +33,8 @@ export class SingleProductComponent implements OnInit, OnDestroy {
       )
   }
 
-  selectProduct(product: any) {
-    this.productService.setSelectedProduct(product);
+  selectProduct() {
+    this.productService.setSelectedProduct(this.productData);
   }
 
   ngOnDestroy() {

@@ -12,6 +12,7 @@ export class Summary {
   public ciudad: any = {'id': 0, 'nombre': ''};
   public direccion: string = '';
   public usuario: string = '';
+  public passwd: string = '';
 
   public marca: any = {'codigo': 0, 'desc': ''};
   public year: number = 0;

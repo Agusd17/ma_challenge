@@ -71,6 +71,9 @@
 
 <hr>
 <div class="row">
+  <div *ngIf="showMsg" class="col-sm-12">
+    <p *ngClass="infoIsValid ? 'success' : 'failure' ">{{ submitResponse[0] }}</p>
+  </div>
   <div class="col-sm-12">
     <button type="button" (click)="submitAll()" class="btn btn-block btn-primary">Enviar datos ></button>
   </div>

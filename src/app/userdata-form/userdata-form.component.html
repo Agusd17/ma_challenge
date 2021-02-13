@@ -98,6 +98,7 @@
           || (userdataForm.get('real-data').get('birthdate').get('year').errors && userdataForm.get('real-data').get('birthdate').get('year').errors['pattern'])">
           Fecha inválida. Corrobore que la fecha sea correcta y no haya ingresado caracteres inválidos.</span>
           <span *ngIf="userdataForm.get('real-data').get('birthdate').errors && userdataForm.get('real-data').get('birthdate').errors['ageOutOfRange']">Campo obligatorio. Debe ser mayor a 18 años y menor a 99 años.</span>
+          <span *ngIf="userdataForm.get('real-data').get('birthdate').errors && userdataForm.get('real-data').get('birthdate').errors['dateDoesNotExist']">La fecha no existe.</span>
         </p>
 
         </div>

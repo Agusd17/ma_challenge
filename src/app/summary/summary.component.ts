@@ -14,16 +14,13 @@ import { LocationService } from '../services/location.service';
 })
 export class SummaryComponent implements OnInit {
 
-  summaryForm: FormGroup;
   userdata: any;
-  vehicledata: any;
-  productdata: any;
   infoIsValid:boolean;
+  showMsg: boolean = false;
+  submitResponse: any[];
   summary = new Summary;
 
   constructor(
-    private locationService: LocationService,
-    private vehicleService: VehicledataService,
     private summaryService: SummaryService
     ) { }
 
@@ -32,6 +29,8 @@ export class SummaryComponent implements OnInit {
   }
 
   submitAll() {
-    console.log(this.summary);
+    this.submitResponse = this.summaryService.sendData();
+    (this.submitResponse[1] === 1) ? this.infoIsValid = true : this.infoIsValid = false;
+    this.showMsg = true;
   }
 }

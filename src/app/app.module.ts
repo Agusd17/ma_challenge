@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { UserdataFormComponent } from './userdata-form/userdata-form.component';
 import { VehicledataFormComponent } from './vehicledata-form/vehicledata-form.component';
-import { ProductListComponent } from './product-list/product-list.component';
 import { SingleProductComponent } from './product-data/single-product/single-product.component';
 import { SummaryComponent } from './summary/summary.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,7 +31,6 @@ import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
     RegisterComponent,
     UserdataFormComponent,
     VehicledataFormComponent,
-    ProductListComponent,
     SingleProductComponent,
     SummaryComponent,
     HeaderComponent,

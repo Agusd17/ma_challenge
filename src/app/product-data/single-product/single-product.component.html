@@ -26,7 +26,7 @@
             <p class="precio-text">Costo final por mes: <span class="precio-num">${{ productData.costo }}</span></p>
           </div>
           <div class="col-sm-12">
-            <button (click)="selectProduct(productData)"
+            <button (click)="selectProduct()"
               class="btn btn-block btn-primary"
               [disabled]="selected === productData.codigoProducto"
               [value]="productData.codigoProducto"

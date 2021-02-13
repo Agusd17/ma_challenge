@@ -64,6 +64,7 @@ export class CustomValidatorsService {
     let inputDate = year +'-'+ month +'-'+ day;
     let d = new Date(year, month, day);
     let realDate = d.getFullYear() +'-'+ d.getMonth() +'-'+ d.getDate();
+
     if (inputDate === realDate) {
 
       return true;

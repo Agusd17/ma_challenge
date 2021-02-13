@@ -10,22 +10,22 @@ import { catchError, map } from 'rxjs/operators';
 export class VehicledataService {
 
   private apiUrl = 'https://servicios.qamercantilandina.com.ar/api/v1';
-  private dataForm: FormGroup = null;
+  private vehicledataForm: FormGroup = null;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  isDataStored(): boolean {
-    return (this.dataForm != null);
-  }
+    saveForm(inputData: FormGroup) {
+      this.vehicledataForm = inputData;
+    }
 
-  saveForm(inputData: FormGroup) {
-    this.dataForm = inputData;
+  isDataStored(): boolean {
+    return (this.vehicledataForm != null);
   }
 
   getForm(): FormGroup {
-    return this.dataForm;
+    return this.vehicledataForm;
   }
 
   getBrands() {
