@@ -1,12 +1,17 @@
 <div class="row">
+
   <div class="col-sm-12 text-center">
+
     <br>
     <h3>Datos personales:</h3>
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
+
   </div>
+
 </div>
+
 <div class="row">
 
   <div class="col-sm-0 col-md-2"></div>
@@ -16,89 +21,109 @@
     <form [formGroup]="userdataForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group" [formGroupName]="'real-data'">
+
         <label for="firstname" class="form-label">Nombre</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <input type="text"
-        class="form-control"
-        formControlName="firstname"
-        id="firstname">
-        <p
-          *ngIf="!userdataForm.get('real-data').get('firstname').valid && userdataForm.get('real-data').get('firstname').touched"
+          class="form-control"
+          formControlName="firstname"
+          id="firstname">
+
+        <p *ngIf="!userdataForm.get('real-data').get('firstname').valid
+          && userdataForm.get('real-data').get('firstname').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('real-data').get('firstname').errors['pattern']">Nombre inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
-          <span *ngIf="userdataForm.get('real-data').get('firstname').errors['required']">Este campo es obligatorio.</span>
+          <span *ngIf="userdataForm.get('real-data').get('firstname').hasError('pattern')">Nombre inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
+          <span *ngIf="userdataForm.get('real-data').get('firstname').hasError('required')">Este campo es obligatorio.</span>
         </p>
 
         <label for="lastname" class="form-label">Apellido</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <input type="text"
-        class="form-control"
-        formControlName="lastname"
-        id="lastname">
-        <p
-          *ngIf="!userdataForm.get('real-data').get('lastname').valid && userdataForm.get('real-data').get('lastname').touched"
+          class="form-control"
+          formControlName="lastname"
+          id="lastname">
+
+        <p *ngIf="!userdataForm.get('real-data').get('lastname').valid
+          && userdataForm.get('real-data').get('lastname').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('real-data').get('lastname').errors['pattern']">Apellido inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
-          <span *ngIf="userdataForm.get('real-data').get('lastname').errors['required']">Este campo es obligatorio.</span>
+          <span *ngIf="userdataForm.get('real-data').get('lastname').hasError('pattern')">Apellido inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
+          <span *ngIf="userdataForm.get('real-data').get('lastname').hasError('required')">Este campo es obligatorio.</span>
         </p>
 
         <label for="dni" class="form-label">Nº de documento</label><span class="form-label-detail">&nbsp;(requerido)</span>
+
         <input type="number"
-        class="form-control"
-        formControlName="dni"
-        id="dni">
-        <p
-          *ngIf="!userdataForm.get('real-data').get('dni').valid && userdataForm.get('real-data').get('dni').touched"
+          class="form-control"
+          formControlName="dni"
+          id="dni">
+
+        <p *ngIf="!userdataForm.get('real-data').get('dni').valid
+          && userdataForm.get('real-data').get('dni').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('real-data').get('dni').errors['pattern']">DNI inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
-          <span *ngIf="userdataForm.get('real-data').get('dni').errors['dniOutOfRange']">El número ingresado no es válido.</span>
-          <span *ngIf="userdataForm.get('real-data').get('dni').errors['required']">Este campo es obligatorio.</span>
+          <span *ngIf="userdataForm.get('real-data').get('dni').hasError('pattern')">DNI inválido. Corrobore que no haya ingresado caracteres prohibidos.</span>
+          <span *ngIf="userdataForm.get('real-data').get('dni').hasError('dniOutOfRange')">El número ingresado no es válido.</span>
+          <span *ngIf="userdataForm.get('real-data').get('dni').hasError('required')">Este campo es obligatorio.</span>
         </p>
 
         <label for="day" class="form-label">Fecha de nacimiento</label><span class="form-label-detail">&nbsp;(requerido)</span>
+
         <p class="input-info">(debe ingresar el mes y el año con dos dígitos, por ej: 01)</p>
+
         <div class="form-group" [formGroupName]="'birthdate'">
 
           <div class="control-subgroup">
+
             <div class="control-20">
+
               <label for="day" class="form-label">Día </label>
               <input type="number"
-              class="form-control"
-              formControlName="day"
-              id="day">
+                class="form-control"
+                formControlName="day"
+                id="day">
+
             </div>
 
             <div class="control-5">
+
               <span>-</span>
+
             </div>
 
             <div class="control-20">
+
               <label for="month" class="form-label">Mes</label>
               <input type="number"
-              class="form-control"
-              formControlName="month"
-              id="month">
+                class="form-control"
+                formControlName="month"
+                id="month">
+
             </div>
 
             <div class="control-5">
+
               <span>-</span>
+
             </div>
 
             <div class="control-30">
+
               <label for="year" class="form-label">Año</label>
               <input type="number"
-              class="form-control"
-              formControlName="year"
-              id="year">
+                class="form-control"
+                formControlName="year"
+                id="year">
+
             </div>
+
           </div>
-          <p
-          *ngIf="!userdataForm.get('real-data').get('birthdate').valid && userdataForm.get('real-data').get('birthdate').touched"
-          class="error-input">
-          <span *ngIf="(userdataForm.get('real-data').get('birthdate').get('day').errors && userdataForm.get('real-data').get('birthdate').get('day').errors['pattern'])
-          || (userdataForm.get('real-data').get('birthdate').get('month').errors && userdataForm.get('real-data').get('birthdate').get('month').errors['pattern'])
-          || (userdataForm.get('real-data').get('birthdate').get('year').errors && userdataForm.get('real-data').get('birthdate').get('year').errors['pattern'])">
-          Fecha inválida. Corrobore que la fecha sea correcta y no haya ingresado caracteres inválidos.</span>
-          <span *ngIf="userdataForm.get('real-data').get('birthdate').errors && userdataForm.get('real-data').get('birthdate').errors['ageOutOfRange']">Campo obligatorio. Debe ser mayor a 18 años y menor a 99 años.</span>
-          <span *ngIf="userdataForm.get('real-data').get('birthdate').errors && userdataForm.get('real-data').get('birthdate').errors['dateDoesNotExist']">La fecha no existe.</span>
+
+          <p *ngIf="!userdataForm.get('real-data').get('birthdate').valid
+            && userdataForm.get('real-data').get('birthdate').touched"
+            class="error-input">
+          <span *ngIf=" userdataForm.get('real-data').get('birthdate').get('day').hasError('pattern')
+            || userdataForm.get('real-data').get('birthdate').get('month').hasError('pattern')
+            || userdataForm.get('real-data').get('birthdate').get('year').hasError('pattern')">
+            Fecha inválida. Corrobore que la fecha sea correcta y no haya ingresado caracteres inválidos.</span>
+          <span *ngIf="userdataForm.get('real-data').get('birthdate').hasError('ageOutOfRange')">Campo obligatorio. Debe ser mayor a 18 años y menor a 99 años.</span>
+          <span *ngIf="userdataForm.get('real-data').get('birthdate').hasError('dateDoesNotExist')">La fecha no existe.</span>
         </p>
 
         </div>
@@ -111,167 +136,208 @@
 
         <label for="email" class="form-label">Email</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <input type="email"
-        class="form-control"
-        formControlName="email"
-        id="email">
-        <p
-          *ngIf="!userdataForm.get('contact-data').get('email').valid && userdataForm.get('contact-data').get('email').touched"
+          class="form-control"
+          formControlName="email"
+          id="email">
+
+        <p *ngIf="!userdataForm.get('contact-data').get('email').valid
+          && userdataForm.get('contact-data').get('email').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('contact-data').get('email').errors['email']">El email ingresado no es válido.</span>
-          <span *ngIf="userdataForm.get('contact-data').get('email').errors['required']">Este campo es obligatorio.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('email').hasError('email')">El email ingresado no es válido.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('email').hasError('required')">Este campo es obligatorio.</span>
         </p>
 
         <label for="mobilenum" class="form-label">Nº de celular</label><span class="form-label-detail">&nbsp;(requerido)</span>
+
         <div class="control-subgroup">
 
           <div class="control-20">
+
             <input type="number"
-            placeholder="0000"
-            class="form-control"
-            formControlName="mobilecode"
-            id="mobilecode">
+              placeholder="0000"
+              class="form-control"
+              formControlName="mobilecode"
+              id="mobilecode">
+
           </div>
 
           <div class="control-5">
+
             <span>-</span>
+
           </div>
 
           <div class="control-75">
+
             <input type="number"
-            placeholder="123456"
-            class="form-control"
-            formControlName="mobilenum"
-            id="mobilenum">
+              placeholder="123456"
+              class="form-control"
+              formControlName="mobilenum"
+              id="mobilenum">
+
           </div>
+
         </div>
-        <p
-          *ngIf="!userdataForm.get('contact-data').get('mobilecode').valid && userdataForm.get('contact-data').get('mobilecode').touched"
+
+        <p *ngIf="!userdataForm.get('contact-data').get('mobilecode').valid
+          && userdataForm.get('contact-data').get('mobilecode').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('contact-data').get('mobilecode').errors['areaCodeOutOfRange']">Código de área inválido.</span>
-          <span *ngIf="userdataForm.get('contact-data').get('mobilecode').errors['required']">Por favor ingrese un código de área.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('mobilecode').hasError('areaCodeOutOfRange')">Código de área inválido.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('mobilecode').hasError('required')">Por favor ingrese un código de área.</span>
         </p>
-        <p
-          *ngIf="!userdataForm.get('contact-data').get('mobilenum').valid && userdataForm.get('contact-data').get('mobilenum').touched"
+
+        <p *ngIf="!userdataForm.get('contact-data').get('mobilenum').valid
+          && userdataForm.get('contact-data').get('mobilenum').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('contact-data').get('mobilenum').errors['phoneNumberOutOfRange']">Número de móvil inválido.</span>
-          <span *ngIf="userdataForm.get('contact-data').get('mobilenum').errors['required']">Por favor ingrese un número de teléfono.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('mobilenum').hasError('phoneNumberOutOfRange')">Número de móvil inválido.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('mobilenum').hasError('required')">Por favor ingrese un número de teléfono.</span>
         </p>
 
         <label for="phonenum" class="form-label">Nº de teléfono fijo</label>
+
         <div class="control-subgroup">
 
           <div class="control-20">
+
             <input type="number"
-            placeholder="0000"
-            class="form-control"
-            formControlName="phonecode"
-            id="phonecode">
+              placeholder="0000"
+              class="form-control"
+              formControlName="phonecode"
+              id="phonecode">
+
           </div>
 
           <div class="control-5">
+
             <span>-</span>
+
           </div>
 
           <div class="control-75">
+
             <input type="number"
-            placeholder="123456"
-            class="form-control"
-            formControlName="phonenum"
-            id="phonenum">
+              placeholder="123456"
+              class="form-control"
+              formControlName="phonenum"
+              id="phonenum">
+
           </div>
+
         </div>
-        <p
-          *ngIf="!userdataForm.get('contact-data').get('phonecode').valid && userdataForm.get('contact-data').get('phonecode').touched"
+
+        <p *ngIf="!userdataForm.get('contact-data').get('phonecode').valid
+          && userdataForm.get('contact-data').get('phonecode').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('contact-data').get('phonecode').errors['areaCodeOutOfRange']">Código de área inválido.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('phonecode').hasError('areaCodeOutOfRange')">Código de área inválido.</span>
         </p>
-        <p
-          *ngIf="!userdataForm.get('contact-data').get('phonenum').valid && userdataForm.get('contact-data').get('phonenum').touched"
+
+        <p *ngIf="!userdataForm.get('contact-data').get('phonenum').valid
+          && userdataForm.get('contact-data').get('phonenum').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('contact-data').get('phonenum').errors['phoneNumberOutOfRange']">Número fijo inválido.</span>
+          <span *ngIf="userdataForm.get('contact-data').get('phonenum').hasError('phoneNumberOutOfRange')">Número fijo inválido.</span>
         </p>
+
       </div>
 
       <div class="form-group" [formGroupName]="'location'">
+
         <div class="control-subgroup">
+
           <div class="control-30">
+
             <label for="province" class="form-label">Provincia</label><span class="form-label-detail">&nbsp;(requerido)</span>
             <select
-            class="form-control"
-            formControlName="province"
-            id="province"
+              class="form-control"
+              formControlName="province"
+              id="province"
             >
-            <option *ngIf="!userdataForm.get('location').get('province').touched" value="" selected disabled><div class="loader">Provincias...</div></option>
+              <option *ngIf="!userdataForm.get('location').get('province').touched" value="" selected disabled><div class="loader">Provincias...</div></option>
               <option *ngFor="let item of provinces | sortBy:'asc':'nombre'" [ngValue]="item">{{ item.nombre }}</option>
             </select>
+
           </div>
 
           <div class="control-5">
+
             <span>-</span>
+
           </div>
 
           <div class="control-30">
+
             <label for="city" class="form-label">Localidad</label><span class="form-label-detail">&nbsp;(requerido)</span>
             <select
-            class="form-control"
-            formControlName="city"
-            id="city"
+              class="form-control"
+              formControlName="city"
+              id="city"
             >
               <option *ngIf="!userdataForm.get('location').get('province').touched" value="" selected disabled><div class="loader">Elija una ciudad...</div></option>
               <option *ngIf="!userdataForm.get('location').get('city').touched" value="" selected disabled><div class="loader">Ciudades...</div></option>
               <option *ngIf="citiesLoading" value="" selected><div class="loader" disabled>Cargando...</div></option>
               <option *ngFor="let item of cities | sortBy:'asc':'nombre' " [ngValue]="item">{{ item.nombre }}</option>
             </select>
+
           </div>
 
           <div class="control-5">
+
             <span>-</span>
+
           </div>
 
           <div class="control-30">
+
             <label for="adress" class="form-label">Dirección</label><span class="form-label-detail">&nbsp;(requerido)</span>
             <input
-            type="text"
-            class="form-control"
-            formControlName="adress"
-            id="adress">
+              type="text"
+              class="form-control"
+              formControlName="adress"
+              id="adress">
+
           </div>
+
         </div>
-        <p
-          *ngIf="!userdataForm.get('location').get('province').valid && userdataForm.get('location').get('province').touched"
+
+        <p *ngIf="!userdataForm.get('location').get('province').valid
+          && userdataForm.get('location').get('province').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('location').get('province').errors
-          && userdataForm.get('location').get('province').errors['required']">Por favor elija una provincia.</span>
+          <span *ngIf="userdataForm.get('location').get('province').hasError('required')">Por favor elija una provincia.</span>
         </p>
-        <p
-          *ngIf="!userdataForm.get('location').get('city').valid && userdataForm.get('location').get('city').touched"
+
+        <p *ngIf="!userdataForm.get('location').get('city').valid
+          && userdataForm.get('location').get('city').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('location').get('city').errors
-          && userdataForm.get('location').get('city').errors['required']">Por favor elija una ciudad.</span>
+          <span *ngIf="userdataForm.get('location').get('city').hasError('required')">Por favor elija una ciudad.</span>
         </p>
-        <p
-          *ngIf="!userdataForm.get('location').get('adress').valid && userdataForm.get('location').get('adress').touched"
+
+        <p *ngIf="!userdataForm.get('location').get('adress').valid
+          && userdataForm.get('location').get('adress').touched"
           class="error-input">
-          <span *ngIf="userdataForm.get('location').get('adress').errors['required']">Por favor ingrese su dirección.</span>
-          <span *ngIf="userdataForm.get('location').get('adress').errors['pattern']">El domicilio ingresado no es válido. Corrobore que no haya ingresado caracteres inválidos.</span>
+          <span *ngIf="userdataForm.get('location').get('adress').hasError('required')">Por favor ingrese su dirección.</span>
+          <span *ngIf="userdataForm.get('location').get('adress').hasError('pattern')">El domicilio ingresado no es válido. Corrobore que no haya ingresado caracteres inválidos.</span>
         </p>
+
       </div>
+
       <hr>
+
       <div class="form-group" [formGroupName]="'user-data'">
+
         <div class="control-subgroup">
 
           <label for="username" class="form-label">Nombre de usuario</label><span class="form-label-detail">&nbsp;(requerido)</span>
           <p class="input-info">(puede incluir solo letras y puntos)</p>
           <input type="text"
-          class="form-control"
-          formControlName="username"
-          id="username">
-          <p
-            *ngIf="!userdataForm.get('user-data').get('username').valid && userdataForm.get('user-data').get('username').touched"
+            class="form-control"
+            formControlName="username"
+            id="username">
+
+          <p *ngIf="!userdataForm.get('user-data').get('username').valid
+            && userdataForm.get('user-data').get('username').touched"
             class="error-input">
-            <span *ngIf="userdataForm.get('user-data').get('username').errors['required']">Por favor ingrese un nombre de usuario.</span>
-            <span *ngIf="userdataForm.get('user-data').get('username').errors['usernameIsInvalid']">El nombre de usuario elegido ya existe.</span>
-            <span *ngIf="userdataForm.get('user-data').get('username').errors['pattern']">
+            <span *ngIf="userdataForm.get('user-data').get('username').hasError('required')">Por favor ingrese un nombre de usuario.</span>
+            <span *ngIf="userdataForm.get('user-data').get('username').hasError('usernameIsInvalid')">El nombre de usuario elegido ya existe.</span>
+            <span *ngIf="userdataForm.get('user-data').get('username').hasError('pattern')">
               Nombre de usuario inválido. Corrobore que no haya ingresado caracteres inválidos y que respete la cantidad mínima y máxima de caracteres.</span>
           </p>
 
@@ -280,59 +346,58 @@
             <label for="password" class="form-label">Contraseña</label><span class="form-label-detail">&nbsp;(requerido)</span>
             <p class="input-info">(debe incluir al menos una mayúscula, una minúscula y un número. Puede incluir símbolos)</p>
             <input type="password"
-            class="form-control"
-            formControlName="password"
-            id="password">
-            <p
-              *ngIf="!userdataForm.get('user-data').get('user-password').get('password').valid
+              class="form-control"
+              formControlName="password"
+              id="password">
+
+            <p *ngIf="!userdataForm.get('user-data').get('user-password').get('password').valid
               && userdataForm.get('user-data').get('user-password').get('password').touched"
               class="error-input">
-              <span *ngIf="userdataForm.get('user-data').get('user-password').get('password').errors['required']">Por favor ingrese una contraseña.</span>
-              <span *ngIf="userdataForm.get('user-data').get('user-password').get('password').errors['pattern']">
+              <span *ngIf="userdataForm.get('user-data').get('user-password').get('password').hasError('required')">Por favor ingrese una contraseña.</span>
+              <span *ngIf="userdataForm.get('user-data').get('user-password').get('password').hasError('pattern')">
                 Contraseña inválida. Corrobore que no haya ingresado caracteres inválidos y que respete la cantidad mínima y máxima de caracteres.</span>
             </p>
 
             <label for="passwordCheck" class="form-label">Repita su contraseña</label><span class="form-label-detail">&nbsp;(requerido)</span>
             <input type="password"
-            class="form-control"
-            formControlName="passwordCheck"
-            id="passwordCheck">
-            <p
-                *ngIf="!userdataForm.get('user-data').get('user-password').get('passwordCheck').valid
-                && userdataForm.get('user-data').get('user-password').get('passwordCheck').touched"
-                class="error-input">
-                <span *ngIf="userdataForm.get('user-data').get('user-password').get('passwordCheck').errors['required']">Por favor repita la contraseña.</span>
-                <span *ngIf="userdataForm.get('user-data').get('user-password').get('passwordCheck').errors['pattern']">
-                  Contraseña inválida. Corrobore que no haya ingresado caracteres inválidos y que respete la cantidad mínima y máxima de caracteres.</span>
-              </p>
+              class="form-control"
+              formControlName="passwordCheck"
+              id="passwordCheck">
+
+            <p *ngIf="!userdataForm.get('user-data').get('user-password').get('passwordCheck').valid
+              && userdataForm.get('user-data').get('user-password').get('passwordCheck').touched"
+              class="error-input">
+              <span *ngIf="userdataForm.get('user-data').get('user-password').get('passwordCheck').hasError('required')">Por favor repita la contraseña.</span>
+              <span *ngIf="userdataForm.get('user-data').get('user-password').get('passwordCheck').hasError('pattern')">
+                Contraseña inválida. Corrobore que no haya ingresado caracteres inválidos y que respete la cantidad mínima y máxima de caracteres.</span>
+            </p>
 
           </div>
-          <p
-            *ngIf="!userdataForm.get('user-data').get('user-password').valid
+
+          <p *ngIf="!userdataForm.get('user-data').get('user-password').valid
             && userdataForm.get('user-data').get('user-password').touched"
             class="error-input">
-            <span *ngIf="userdataForm.get('user-data').get('user-password').errors['passDiffer']">
+            <span *ngIf="userdataForm.get('user-data').get('user-password').hasError('passDiffer')">
               Las contraseñas no coinciden.</span>
           </p>
 
+
         </div>
+
       </div>
 
-
-      <div class="text-center">
-        <hr>
-        <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
-      </div>
     </form>
+
   </div>
+
 </div>
+
 <div class="row">
+
   <div class="col-sm-12">
+
     <button type="button" (click)="onSubmit()" [disabled]="!userdataForm.valid" class="btn btn-primary btn-block">Datos del vehículo ></button>
+
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block">Datos del vehículo ></button>
-  </div>
+
 </div>

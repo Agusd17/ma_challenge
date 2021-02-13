@@ -13,3 +13,19 @@
   background: linear-gradient(90deg, #0062cc, #c6e1ff);
   color: white;
 }
+.success {
+  text-align:center;
+  width:100%;
+  margin: 15px 0 15px;
+  padding:10px 0 5px;
+  color: green;
+  border: 1px solid rgba($color: #9cff8f, $alpha: 0.7);
+}
+.failure {
+  text-align:center;
+  width:100%;
+  margin: 15px 0 15px;
+  padding:10px 0 5px;
+  color: red;
+  border: 1px solid rgba($color: #ff342d, $alpha: 0.7);
+}

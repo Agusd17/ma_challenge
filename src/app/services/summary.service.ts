@@ -109,7 +109,7 @@ export class SummaryService {
 
   /**
    * Comprueba que los formularios sigan siendo válidos y simula el envío de los datos.
-   * devuelte un array ['mensaje', 'código'] según corresponda.
+   * devuelve un array [string, number] según corresponda.
    */
   sendData() {
 

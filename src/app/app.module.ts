@@ -12,7 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SectionHeroImageComponent } from './section-hero-image/section-hero-image.component';
 import { RegisterWelcomeComponent } from './register-welcome/register-welcome.component';
-import { AboutComponent } from './about/about.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,7 +36,6 @@ import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
     FooterComponent,
     SectionHeroImageComponent,
     RegisterWelcomeComponent,
-    AboutComponent,
     ProductDataComponent,
     SortByPipe,
     CharReplacePipe

@@ -1,23 +1,39 @@
 <div class="row">
+
   <div class="col-sm-12 text-center">
+
     <br>
     <h3>Pólizas disponibles:</h3>
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
+
     <div class="row">
+
       <div *ngFor="let item of products | sortBy:'desc':'puntaje' " class="col-sm-12 col-lg-6">
-        <app-single-product  [productData]="item"></app-single-product>
+
+        <app-single-product [productData]="item"></app-single-product>
+
       </div>
+
     </div>
+
     <div class="row">
 
       <div class="col-sm-6">
+
         <button type="button" [routerLink]="'../vehicle-data'" class="btn btn-block btn-secondary">< Datos del vehículo</button>
+
       </div>
+
       <div class="col-sm-6">
+
         <button type="button" (click)="submitData()" class="btn btn-block btn-primary" [disabled]="!isProductSelected">Continuar ></button>
+
       </div>
+
     </div>
+
   </div>
+
 </div>

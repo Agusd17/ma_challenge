@@ -38,6 +38,7 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+
     this.formInit();
     this.loadBrands();
     this.loadYears();
@@ -52,7 +53,6 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
     if (this.vehicledataService.isDataStored()) {
       this.vehicledataForm = this.vehicledataService.getForm();
     } else {
-
 
       let brand: string = null;
       let year: number = null;
@@ -76,6 +76,7 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   }
 
   onBrandChange() {
+
     this.brandSubscription = this.vehicledataForm.get('brand').valueChanges.subscribe(
       selectedValue => {
         this.selectedBrand = selectedValue.codigo;
@@ -83,7 +84,9 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
       }
     )
   }
+
   onYearChange() {
+
     this.yearSubscription = this.vehicledataForm.get('year').valueChanges.subscribe(
       selectedValue => {
         this.selectedYear = selectedValue;
@@ -91,7 +94,9 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
       }
     )
   }
+
   onModelChange() {
+
     this.modelSubscription = this.vehicledataForm.get('model').valueChanges.subscribe(
       selectedValue => {
         this.selectedModel = selectedValue;
@@ -99,7 +104,9 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
       }
     )
   }
+
   onVersionChange() {
+
     this.versionSubscription = this.vehicledataForm.get('version').valueChanges.subscribe(
       selectedValue => {
         this.selectedVersion = selectedValue;
@@ -108,6 +115,7 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   }
 
   loadBrands() {
+
     this.brandsLoading = true;
     this.vehicledataService.getBrands().subscribe(response => {
       this.brands = response;
@@ -116,17 +124,16 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   }
 
   loadYears() {
+
     for (let index = this.currentYear; index > (this.currentYear - 20); index--) {
       this.years.push(index);
     }
-
   }
 
   loadModels() {
+
     if (this.selectedBrand != null && this.selectedYear != null) {
       this.modelsLoading = true;
-      console.log('im going to find some models for brand '+ this.selectedBrand + ' and year ' + this.selectedYear);
-
       this.vehicledataService.getModels(this.selectedBrand, this.selectedYear).subscribe(response => {
         this.models = response;
         this.modelsLoading = false;
@@ -135,10 +142,9 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   }
 
   loadVersions() {
+
     if (this.selectedBrand != null && this.selectedYear != null && this.selectedModel != null) {
       this.versionsLoading = true;
-      console.log('im going to find some versions for brand '+ this.selectedBrand + ', year ' + this.selectedYear + ' and model ' + this.selectedModel);
-
       this.vehicledataService.getVersions(this.selectedBrand, this.selectedYear, this.selectedModel).subscribe(response => {
         this.versions = response;
         this.versionsLoading = false;
@@ -147,17 +153,14 @@ export class VehicledataFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+
     this.vehicledataService.saveForm(this.vehicledataForm);
     this.summaryService.saveVehicledata();
     this.router.navigate(['../product-data'], {relativeTo: this.route})
   }
 
-  testing() {
-    console.log(this.vehicledataForm);
-
-  }
-
   ngOnDestroy() {
+
     this.brandSubscription.unsubscribe();
     this.yearSubscription.unsubscribe();
     this.modelSubscription.unsubscribe();

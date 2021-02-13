@@ -31,6 +31,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+
     this.formInit();
     this.loadProvinces();
     this.onProvinceChanges();
@@ -157,18 +158,15 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
 
   }
 
-  testing() {
-    console.log(this.userdataForm);
-
-  }
-
   onSubmit() {
+
     this.userdataService.saveForm(this.userdataForm);
     this.summaryService.saveUserdata();
     this.router.navigate(['../vehicle-data'], {relativeTo: this.route})
   }
 
   loadProvinces() {
+
     this.provincesLoading = true;
     this.locationService.getProvinces().subscribe(response => {
       this.provinces = response;
@@ -189,6 +187,7 @@ export class UserdataFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+
     this.provSubscription.unsubscribe();
   }
 }

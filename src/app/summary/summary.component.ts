@@ -15,7 +15,7 @@ import { LocationService } from '../services/location.service';
 export class SummaryComponent implements OnInit {
 
   userdata: any;
-  infoIsValid:boolean;
+  infoIsValid:boolean = false;
   showMsg: boolean = false;
   submitResponse: any[];
   summary = new Summary;
@@ -25,12 +25,18 @@ export class SummaryComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
     this.summary = this.summaryService.getSummary();
   }
 
   submitAll() {
+
     this.submitResponse = this.summaryService.sendData();
     (this.submitResponse[1] === 1) ? this.infoIsValid = true : this.infoIsValid = false;
     this.showMsg = true;
+
+    console.log('intentando enviar datos...');
+    console.log(this.submitResponse);
+
   }
 }

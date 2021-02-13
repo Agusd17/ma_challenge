@@ -1,4 +1,9 @@
-# Mercantil
+# Mercantil Andina Challenge
+
+> **Autor: Agustín D'llano.**  
+email: agus.dllano@gmail.com  
+<https://www.linkedin.com/in/agustin-d-llano-505882106/>  
+tel: (2983)-580095
 
 Proyecto creado para el Challenge de Mercantil Andina.
 
@@ -7,7 +12,6 @@ Proyecto creado para el Challenge de Mercantil Andina.
 ### Componentes
 
 - [app.component](#appcomponent)
-- [about.component](#aboutcomponent)
 - [footer.component](#footercomponent)
 - [header.component](#headercomponent)
 - [product-data.component](#product-datacomponent)
@@ -42,10 +46,6 @@ Proyecto creado para el Challenge de Mercantil Andina.
 ## app.component
 
 Componente principal de la App. Crea el header, el footer y el router-outlet principal.
-
-## about.component
-
-Existe solo a modo de mockup para crear una visión de web App mas completa.
 
 ## footer.component
 

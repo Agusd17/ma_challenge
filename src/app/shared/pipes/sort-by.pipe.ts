@@ -6,15 +6,21 @@ import { orderBy } from 'lodash';
 })
 export class SortByPipe implements PipeTransform {
 
+  /**
+   * Recibe un array de objetos, un orden ascendente o descendente y opcionalmente, una columna. Devuelve el array ordenado.
+   * @param value array a ordenar.
+  * @param order 'asc' para orden ascendente o 'desc' para orden descendente.
+   * @param column (opcional) columna por la cual ordenar.
+   */
   transform(value: any[], order = '', column: string = ''): any[] {
 
-    if (!value || order === '' || !order) { return value; } // if its not an array...
-    if (value.length <= 1) { return value; } // if the array has only one item, i don't need to order it
+    if (!value || order === '' || !order) { return value; }
+    if (value.length <= 1) { return value; }
     if (!column || column === '') {
       if (order==='asc') { return value.sort(); }
       if (order==='desc') { return value.sort().reverse(); }
       else { return value; }
-    } // sort 1d array
+    }
 
     return orderBy(value, [column], [order]);
   }

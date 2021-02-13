@@ -1,97 +1,128 @@
 <div class="row">
+
   <div class="col-sm-12 text-center">
+
     <br>
     <h3>Datos del vehículo:</h3>
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur molestiae doloremque, qui tempore magni libero reiciendis veniam facere quibusdam excepturi, accusamus harum architecto ducimus, aut repellendus voluptate fuga fugit cumque.</p>
     <hr>
+
     <form [formGroup]="vehicledataForm" (ngSubmit)="onSubmit()">
+
       <div class="control-30">
+
         <label for="brand" class="form-label">Marca del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <select
-        class="form-control"
-        formControlName="brand"
-        id="brand">
+          class="form-control"
+          formControlName="brand"
+          id="brand">
           <option value="null" selected disabled>Marca del vehículo...</option>
           <option *ngFor="let item of brands" [ngValue]="item" [disabled]="item.codigo === 0 ? true : null"><input type="hidden" [value]="item.desc">{{ item.desc }}</option>
         </select>
+
       </div>
 
       <div class="control-5">
+
         <span>-</span>
+
       </div>
 
       <div class="control-30">
+
         <label for="year" class="form-label">Año</label>
         <select
-        class="form-control"
-        formControlName="year"
-        id="year">
-        <option value="null" selected disabled>Año de fabricación...</option>
+          class="form-control"
+          formControlName="year"
+          id="year">
+          <option value="null" selected disabled>Año de fabricación...</option>
           <option *ngFor="let item of years | sortBy:'desc'" [value]="item">{{ item }}</option>
         </select>
+
       </div>
 
       <div class="control-5">
+
         <span>-</span>
+
       </div>
 
       <div class="control-30">
+
         <label for="model" class="form-label">Modelo del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <select
-        class="form-control"
-        formControlName="model"
-        id="model">
+          class="form-control"
+          formControlName="model"
+          id="model">
           <option *ngIf="models == null" value="null" selected disabled>Seleccione marca y año</option>
           <option *ngIf="models != null && models.length == 0" value="null" selected disabled>No existen modelos</option>
           <option *ngIf="models != null && models.length != 0" value="null" selected disabled>Seleccione un modelo...</option>
           <option *ngFor="let item of models | sortBy:'asc':'nombre'" [value]="item">{{ item }}</option>
         </select>
+
       </div>
+
       <div *ngIf="!vehicledataForm.valid && vehicledataForm.touched" class="col-sm-12">
+
         <p *ngIf="!vehicledataForm.get('brand').valid && vehicledataForm.get('brand').touched" class="error-input">
           <span *ngIf="vehicledataForm.get('brand').errors['required']">Por favor elija una marca.</span>
         </p>
+
         <p *ngIf="!vehicledataForm.get('year').valid && vehicledataForm.get('year').touched" class="error-input">
           <span *ngIf="vehicledataForm.get('year').errors['required']">Por favor elija un año.</span>
         </p>
+
         <p *ngIf="!vehicledataForm.get('model').valid && vehicledataForm.get('model').touched" class="error-input">
           <span *ngIf="vehicledataForm.get('model').errors['required']">Por favor elija un modelo.</span>
         </p>
+
       </div>
+
       <div class="control-75">
+
         <label for="version" class="form-label">Versión del vehículo</label><span class="form-label-detail">&nbsp;(requerido)</span>
         <select
-        class="form-control"
-        formControlName="version"
-        id="version">
+          class="form-control"
+          formControlName="version"
+          id="version">
           <option *ngIf="versions == null" value="null" selected disabled>Seleccione versión</option>
           <option *ngIf="versionsLoading" value="" selected><div class="loader">Cargando...</div></option>
           <option *ngIf="versions != null && versions.length == 0" value="null" selected disabled>No existen versiones</option>
           <option *ngIf="versions != null && versions.length != 0" value="null" selected disabled>Seleccione una versión...</option>
           <option *ngFor="let item of versions | sortBy:'asc':'nombre'" [ngValue]="item">{{ item.desc }}</option>
         </select>
+
       </div>
+
+      <br>
+
       <div *ngIf="!vehicledataForm.get('version').valid && vehicledataForm.get('version').touched" class="col-sm-12">
+
         <p class="error-input">
           <span *ngIf="vehicledataForm.get('version').errors['required']">Por favor elija una versión.</span>
         </p>
-      </div>
-
-      <div class="text-center">
-        <hr>
-
-        <button type="button" class="btn btn-success" (click)="testing()">testear servicio ></button>
 
       </div>
+
     </form>
+
   </div>
+
 </div>
+
 <div class="row">
+
   <div class="col-sm-6">
+
     <button type="button" [routerLink]="'../user-data'" class="btn btn-block btn-secondary">< Datos personales</button>
+
   </div>
+
   <div class="col-sm-6">
+
     <button type="button" (click)="onSubmit()" class="btn btn-block btn-primary">Elegir póliza ></button>
+
   </div>
+
 </div>

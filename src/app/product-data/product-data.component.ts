@@ -26,6 +26,7 @@ export class ProductDataComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+
     this.subscription = this.productdataService.selectedProductChanged.subscribe(product => {
       this.selectedProduct = product;
       this.isProductSelected = true;
@@ -35,6 +36,7 @@ export class ProductDataComponent implements OnInit, OnDestroy {
   }
 
   loadProducts() {
+
     this.productsLoading = true;
     this.productdataService.getProducts().subscribe( response => {
       this.products = response;
@@ -43,11 +45,13 @@ export class ProductDataComponent implements OnInit, OnDestroy {
   }
 
   submitData() {
+
     this.summaryService.saveProductdata();
     this.router.navigate(['../summary'], {relativeTo: this.route})
   }
 
   ngOnDestroy() {
+
     this.subscription.unsubscribe();
   }
 
