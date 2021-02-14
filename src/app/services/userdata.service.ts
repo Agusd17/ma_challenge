@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -29,6 +30,23 @@ export class UserdataService {
   isDataStored():boolean {
 
     return (this.userdataForm != null);
+  }
+
+  /**
+   * Comprueba que el formulario almacenado sea válido
+   */
+  isValid() {
+
+    const promise = new Promise(
+      (resolve, reject) => {
+        if (this.userdataForm != null) {
+          resolve(this.userdataForm.valid);
+        } else {
+          resolve(false);
+        }
+      }
+  );
+  return promise;
   }
 
   /**

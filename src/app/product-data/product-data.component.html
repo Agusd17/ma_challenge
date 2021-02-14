@@ -28,7 +28,13 @@
 
       <div class="col-sm-6">
 
-        <button type="button" (click)="submitData()" class="btn btn-block btn-primary" [disabled]="!isProductSelected">Continuar ></button>
+        <button
+          type="button"
+          (click)="submitData()"
+          class="btn btn-block btn-primary"
+          [disabled]="!isProductSelected">
+          {{ !isProductSelected ? 'Elija un producto para continuar' : 'Continuar >' }}
+        </button>
 
       </div>
 

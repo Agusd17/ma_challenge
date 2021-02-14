@@ -396,7 +396,13 @@
 
   <div class="col-sm-12">
 
-    <button type="button" (click)="onSubmit()" [disabled]="!userdataForm.valid" class="btn btn-primary btn-block">Datos del vehículo ></button>
+    <button
+      type="button"
+      (click)="onSubmit()"
+      [disabled]="!userdataForm.valid"
+      class="btn btn-primary btn-block">
+      {{ !userdataForm.valid ? 'Complete todos los campos para continuar' : 'Continuar con datos del vehículo >' }}
+    </button>
 
   </div>
 

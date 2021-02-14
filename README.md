@@ -12,6 +12,8 @@ Proyecto creado para el Challenge de Mercantil Andina.
 ### Componentes
 
 - [app.component](#appcomponent)
+- [customlist.component](#customlistcomponent)
+- [customlist-item.component](#customlist-componentcomponent)
 - [footer.component](#footercomponent)
 - [header.component](#headercomponent)
 - [product-data.component](#product-datacomponent)
@@ -31,6 +33,7 @@ Proyecto creado para el Challenge de Mercantil Andina.
 - [summary.service](#summaryservice)
 - [userdata.service](#userdataservice)
 - [vehicledata.service](#vehicledataservice)
+- [web-contents.service](#web-contentsservice)
 
 ### Modelos
 
@@ -41,11 +44,38 @@ Proyecto creado para el Challenge de Mercantil Andina.
 - [char-replace.pipe](#char-replace)
 - [sort-by.pipe](#sort-by)
 
+### Guards
+
+- [userform-auth.guard](#userform-authguard)
+
+---
+
 ## Descripción de los componentes
 
 ## app.component
 
 Componente principal de la App. Crea el header, el footer y el router-outlet principal.
+
+## customlist.component
+
+Crea una lista a partir de un array de objetos, creando un item por cada elemento del array recibido.
+
+**Atributos:**
+
+|Atributo|Definición|
+|---|---|
+|`@Input() itemsList`|Recibe desde el componente donde es inyectado, una lista de objetos con el formato `{icon: string, content: string}`.|
+
+## customlist-component.component
+
+Crea un item basado en un ícono y un texto recibidos desde el componente padre *customlist.component*.
+
+**Atributos:**
+
+|Atributo|Definición|
+|---|---|
+|`@Input() itemIcon`|Recibe desde el componente padre *customlist.component* un path de tipo string (que muestra como 'icono' del item en sí mismo).|
+|`@Input() itemContent`|Recibe el contenido (texto) del item.|
 
 ## footer.component
 
@@ -323,6 +353,7 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 |---|---|
 |`getProducts()`|solicita a la *API* el listado de productos (pólizas) disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de productos o un error, según corresponda.|
 |`setSelectedProduct(product: any)`|guarda un objeto con el producto elegido en la variable *selectedProduct* y emite un evento nuevo a través de *selectedProductChanged*.|
+|`isValid()`|retorna **true** si existe un objeto válido en la variable *selectedProduct*. De lo contrario, retorna **false**|
 |`getSelected()`|devuelve el objeto almacenado en *selectedProduct*.|
 
 ## summary.service
@@ -379,6 +410,7 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 |---|---|
 |`saveForm(inputData: FormGroup)`|guarda una copia del *FormGroup* recibido por parámetro, en la variable *userdataForm*.|
 |`isDataStored()`|retorna **true** si existe data guardada en la variable *userdataForm*.|
+|`isValid()`| retorna **true** si existe un *FormGroup* válido (y validado correctamente) en la variable *userdataForm*. De lo contrario, retorna **false**|
 |`getForm()`|devuelve el objeto *FormGroup* almacenado en *userdataForm*.|
 |`checkUsername(control: FormControl)`|recibe un control por parámetro. Retorna una promesa. Consulta a la *API* por el valor del control (un string), para corroborar si ya existe un registro similar al consultado. En caso afirmativo, resuelve un error 'usernameIsInvalid'. Si el string no existe, resuelve *null*. Si el request falla, resuelve un error 'usernameBadRequest'.|
 
@@ -405,10 +437,30 @@ Se encarga de comunicarse con el servicio web de Mercantil Andina para consultar
 |---|---|
 |`saveForm(inputData: FormGroup)`| guarda una copia del *FormGroup* recibido por parámetro, en la variable *vehicledataForm*.|
 |`isDataStored()`| retorna **true** si existe data guardada en la variable *vehicledataForm*.|
+|`isValid()`| retorna **true** si existe un *FormGroup* válido (y validado correctamente) en la variable *vehicledataForm*. De lo contrario, retorna **false**|
 |`getForm()`| devuelve el objeto *FormGroup* almacenado en *vehicledataForm*.|
 |`getBrands()`| solicita a la *API* el listado de marcas disponibles. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
 |`getModels(brand: string, year: number)`| recibe una marca y un año como argumentos. Solicita a la *API* el listado de modelos disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
 |`getVersions(brand: string, year: number, model: string)`| recibe una marca, un año y un modelo como argumentos. Solicita a la *API* el listado de versiones disponibles en base a los argumentos recibidos. Mapea la respuesta a través de un pipe y devuelve el listado de marcas o un error, según corresponda.|
+
+## web-contents.service
+
+Servicio mockup que simula contenidos que podrían provenir desde una API. Se utiliza para cargar la lista de items del componente *customlist.component*. Es reutilizable en cualquier sección.
+
+**Atributos:**
+
+|Atributo|Definición|
+|---|---|
+|advantagesList| array de objetos de tipo `{icon: string, content: string}`. Almacena el path a un ícono y el contenido (texto) de un ítem de la lista. Se encuentra precargado a modo de ejemplo.|
+
+**Métodos:**
+
+| Método | Definición |
+|---|---|
+|`setList(itemList: any[])`| Recibe una lista de objetos representando el path a un ícono y el contenido (texto) del item, que luego se mostrará en una lista.|
+|`getAdvantages():any[]`| Devuelve la lista almacenada en el servicio.|
+
+---
 
 ## Descripción de los modelos
 
@@ -441,6 +493,8 @@ Modelo de clase que almacena los datos ingresados por el usuario, desde los dos 
 | franquicia| valor de la franquicia.|
 | costo| costo final de la póliza por mes.|
 
+---
+
 ## Descripción de los pipes
 
 ## char-replace.pipe
@@ -458,3 +512,17 @@ Modelo de clase que almacena los datos ingresados por el usuario, desde los dos 
 | Método | Definición |
 |---|---|
 |`transform(value: any[], order = '', column: string = '')`|recibe un array de elementos y los ordena de manera ascendente ('asc') o descendente ('desc'), según se especifique al aplicar el pipe. Puede especificarse una columna del array por la cual prefiera ordenarse.|
+
+---
+
+## Descripción de los guards
+
+## formvalidator-auth.guard
+
+Guarda que proteje contra el acceso a los componentes *vehicledata-form.component*, *product-data.component* y *summary.component* si no se completaron los pasos previos de registración. Evalúa si los componentes previos están validados (chequeando por ejemplo si el form de *userdata-form.component* fue completado y es válido) para permitir el acceso a los subsiguientes pasos de registración. Bloquea los intentos de acceso directo por URL a dichos componentes en el caso de que no esté permitido el mismo y redirige al inicio.
+
+**Métodos:**
+
+| Método | Definición |
+|---|---|
+|`canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot)`|recibe como datos adicionales, un string indicando la ruta destino, y en base a ella, realiza las evaluaciones pertinentes, chequeando que los pasos previos de registro hayan sido completados y validados. En caso afirmativo, permite el redireccionamiento. En caso contrario, redigire al inicio.|

@@ -21,8 +21,12 @@ import { UserdataService } from './services/userdata.service';
 import { VehicledataService } from './services/vehicledata.service';
 import { CustomValidatorsService } from './services/custom-validators.service';
 import { SummaryService } from './services/summary.service';
+import { WebContentsService } from './services/web-contents.service';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
 import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
+import { CustomlistComponent } from './customlist/customlist.component';
+import { CustomlistItemComponent } from './customlist/customlist-item/customlist-item.component';
+import { FormValidatorAuthGuard } from './formvalidator-auth.guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
     RegisterWelcomeComponent,
     ProductDataComponent,
     SortByPipe,
-    CharReplacePipe
+    CharReplacePipe,
+    CustomlistComponent,
+    CustomlistItemComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,7 @@ import { CharReplacePipe } from './shared/pipes/char-replace.pipe';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FormValidatorAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

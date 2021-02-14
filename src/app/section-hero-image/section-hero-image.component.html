@@ -2,15 +2,21 @@
 
   <div class="col-sm-12 hero-container">
 
-    <div class="hero-image" [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('+imgUrl+')'}">
-
+    <div class="hero-image" [ngStyle]="{'background-image': 'linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0)),url('+imgUrl+')'}">
       <div class="hero-title">
 
-        <h1>{{ sectionTitle }}</h1>
+        <div class="row">
 
-        <br>
+          <div class="col-sm-12 col-lg-6 text-left">
 
-        <p>{{ sectionDescription }}</p>
+            <h1>{{ sectionTitle }}</h1>
+
+            <br>
+
+            <p>{{ sectionDescription }}</p>
+
+          </div>
+        </div>
 
       </div>
 

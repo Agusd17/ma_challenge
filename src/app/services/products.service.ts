@@ -42,6 +42,23 @@ export class ProductsService {
   }
 
   /**
+   * Comprueba que el formulario almacenado sea válido
+   */
+  isValid() {
+
+    const promise = new Promise(
+      (resolve, reject) => {
+        if (this.selectedProduct != null) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      }
+  );
+  return promise;
+  }
+
+  /**
    * Devuelve el producto seleccionado actualmente, o 0 si no hay producto seleccionado.
    */
   getSelected() {

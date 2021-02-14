@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WebContentsService } from '../services/web-contents.service';
+
 
 @Component({
   selector: 'app-register-welcome',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterWelcomeComponent implements OnInit {
 
-  constructor() { }
+  advantagesList: any[];
+
+  constructor(private webContents: WebContentsService) { }
 
   ngOnInit(): void {
+
+    this.advantagesList = this.webContents.getAdvantages();
   }
 
 }

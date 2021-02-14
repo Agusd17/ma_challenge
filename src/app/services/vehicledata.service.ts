@@ -35,6 +35,23 @@ export class VehicledataService {
   }
 
   /**
+   * Comprueba que el formulario almacenado sea válido
+   */
+  isValid() {
+
+    const promise = new Promise(
+      (resolve, reject) => {
+        if (this.vehicledataForm != null) {
+          resolve(this.vehicledataForm.valid);
+        } else {
+          resolve(false);
+        }
+      }
+  );
+  return promise;
+  }
+
+  /**
    * Devuelve el FormGroup almacenado en el servicio
    */
   getForm(): FormGroup {

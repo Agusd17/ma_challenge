@@ -6,8 +6,8 @@ export class Summary {
   public nacimiento: string = '';
   public email: string = '';
 
-  public numMobile: number = 0;
-  public numPhone: number = 0;
+  public numMobile: string = '';
+  public numPhone: string = '';
   public provincia: any = {'id': 0, 'nombre': ''};
   public ciudad: any = {'id': 0, 'nombre': ''};
   public direccion: string = '';
