@@ -19,6 +19,10 @@ export class FormValidatorAuthGuard implements CanActivate {
 
   }
 
+  /**
+   * Verifica la ruta destino (a través de un string recibido por data, desde app-routing) y realiza las validaciones necesarias para permitir o denegar el redireccionamiento.
+   * Bloquea el acceso directo a componentes del registro que no deberian ser accesibles sin completar los pasos previos.
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
